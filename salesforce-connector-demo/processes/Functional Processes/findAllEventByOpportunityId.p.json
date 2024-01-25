@@ -1,0 +1,66 @@
+{
+  "format" : "10.0.0",
+  "id" : "18C19E836CE959F3",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.FindAllEventByOpportunityIdData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "findEvent(String)",
+      "config" : {
+        "callSignature" : "findEvent",
+        "input" : {
+          "params" : [
+            { "name" : "oppId", "type" : "String" }
+          ],
+          "map" : {
+            "out.oppId" : "param.oppId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "events", "type" : "java.util.List<com.axonivy.connector.salesforce.model.Event>" }
+          ],
+          "map" : {
+            "result.events" : "in.events"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "SubProcessCall",
+      "name" : "QueryService",
+      "config" : {
+        "call" : {
+          "params" : [
+            { "name" : "query", "type" : "String" }
+          ],
+          "code" : "param.query = \"Select FIELDS(ALL) from Event where WhatId='\"+ in.oppId +\"' LIMIT 200\";"
+        },
+        "processCall" : "QueryService:call(String)",
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
+            "",
+            "in.events = ConvertUtils.convertToListEvent(result.jsonNode);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}
