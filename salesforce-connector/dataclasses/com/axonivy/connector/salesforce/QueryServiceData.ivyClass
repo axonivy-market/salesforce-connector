@@ -1,0 +1,4 @@
+QueryServiceData #class
+com.axonivy.connector.salesforce #namespace
+query String #field
+jsonNode com.fasterxml.jackson.databind.JsonNode #field

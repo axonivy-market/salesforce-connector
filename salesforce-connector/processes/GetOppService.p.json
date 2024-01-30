@@ -1,0 +1,67 @@
+{
+  "format" : "10.0.0",
+  "id" : "18BA2F3BE385F8DB",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.GetServiceData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(String)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "id", "type" : "String" }
+          ],
+          "map" : {
+            "out.id" : "param.id"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "opportunity", "type" : "com.axonivy.connector.salesforce.model.Opportunity" }
+          ],
+          "map" : {
+            "result.opportunity" : "in.opportunity"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RestClientCall",
+      "name" : "Get Opportunity",
+      "config" : {
+        "path" : "/sobjects/Opportunity/{id}",
+        "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+        "clientErrorCode" : "ivy:error:rest:client",
+        "statusErrorCode" : "ivy:error:rest:client",
+        "templateParams" : {
+          "subdomain" : "",
+          "id" : "in.id"
+        },
+        "resultType" : "com.fasterxml.jackson.databind.JsonNode",
+        "responseCode" : [
+          "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
+          "",
+          "in.opportunity = ConvertUtils.convertToOpportunity(result);"
+        ]
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "icon" : "res:/webContent/icons/Salesforce-logo.jpg"
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

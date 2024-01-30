@@ -1,0 +1,47 @@
+{
+  "format" : "10.0.0",
+  "id" : "18C19135AC79638F",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "outLink" : "start.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 472, "y" : 64 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "UserTask",
+      "name" : "ChartDemo",
+      "config" : {
+        "dialogId" : "salesforce.connector.demo.Chart",
+        "startMethod" : "start()",
+        "case" : {
+          "name" : "ChartDemo",
+          "description" : "Chart Demo"
+        },
+        "task" : {
+          "name" : "ChartDemo",
+          "description" : "Chart Demo",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f1" }
+    } ]
+}
