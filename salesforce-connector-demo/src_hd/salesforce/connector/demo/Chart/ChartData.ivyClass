@@ -1,0 +1,4 @@
+ChartData #class
+salesforce.connector.demo.Chart #namespace
+bean com.axonivy.connector.salesforce.ChartBean #field
+bean PERSISTENT #fieldModifier

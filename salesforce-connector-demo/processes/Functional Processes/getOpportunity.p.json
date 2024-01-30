@@ -1,0 +1,67 @@
+{
+  "format" : "10.0.0",
+  "id" : "18BB87D903C86664",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.GetOppotunityData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getOpportunity(String)",
+      "config" : {
+        "callSignature" : "getOpportunity",
+        "input" : {
+          "params" : [
+            { "name" : "id", "type" : "String" }
+          ],
+          "map" : {
+            "out.id" : "param.id"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "opp", "type" : "com.axonivy.connector.salesforce.model.Opportunity" }
+          ],
+          "map" : {
+            "result.opp" : "in.opp"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "SubProcessCall",
+      "name" : "GetOppService",
+      "config" : {
+        "processCall" : "GetOppService:call(String)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.opp" : "result.opportunity"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "id", "type" : "String" }
+          ],
+          "map" : {
+            "param.id" : "in.id"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

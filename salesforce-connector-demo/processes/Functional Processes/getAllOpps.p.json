@@ -1,0 +1,57 @@
+{
+  "format" : "10.0.0",
+  "id" : "18BEBE0550975A33",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getAllOpps()",
+      "config" : {
+        "callSignature" : "getAllOpps",
+        "result" : {
+          "params" : [
+            { "name" : "opps", "type" : "java.util.List<com.axonivy.connector.salesforce.model.Opportunity>" }
+          ],
+          "map" : {
+            "result.opps" : "in.opps"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 64 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "SubProcessCall",
+      "name" : "QueryService",
+      "config" : {
+        "call" : {
+          "params" : [
+            { "name" : "query", "type" : "String" }
+          ],
+          "code" : "param.query = ivy.html.escape(\"Select FIELDS(ALL) from Opportunity LIMIT 200\");"
+        },
+        "processCall" : "QueryService:call(String)",
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
+            "out.opps = ConvertUtils.convertToListOpportunity(result.jsonNode);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f1" }
+    } ]
+}

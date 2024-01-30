@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/frame-10.xhtml">
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/listOpps/listOpps')}</ui:define>
+		<ui:define name="content">
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+				<div class="ui-fluid">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-12 ui-lg-12">
+							<div class="card"></div>
+						</div>
+					</div>
+				</div>
+				<br />
+				<br />
+				<div class="command-btns">
+					<p:commandButton id="add" actionListener="#{data.bean.addNewOppotunity()}" oncomplete="PF('opportunityCreateDialog').show()"
+						value="Add New" icon="si si-add">						
+					</p:commandButton>
+				</div>
+				<div class="ui-fluid">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-12 ui-lg-12">
+							<p:dataTable id="oppDataTable" widgetVar="oppDataTable"
+								value="#{data.bean.opps}" var="opp" rowKey="#{opp.id}" rows="10"
+								paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								currentPageReportTemplate="({currentPage} of {totalPages})"
+								rowsPerPageTemplate="5,10,20" paginatorPosition="bottom"
+								emptyMessage="No records found"
+								filteredValue="#{data.bean.filterOpps}"
+								globalFilterFunction="#{data.bean.globalFilterFunction}">
+
+								<p:column
+									headerText="#{ivy.cms.co('/Dialogs/listOpps/oppName')}"
+									width="120px;" sortBy="#{opp.oppName}"
+									filterBy="#{opp.oppName}" filterMatchMode="contains">
+									<p:commandLink value="#{opp.oppName}"
+										actionListener="#{data.bean.openOpportunityDetail(opp.id)}"
+										oncomplete="PF('opportunityDetailDialog').show()"
+										update="opportunityDetail" />
+								</p:column>
+								<p:column
+									headerText="#{ivy.cms.co('/Dialogs/listOpps/accName')}"
+									width="100px;" sortBy="#{opp.accName}"
+									filterBy="#{opp.accName}" filterMatchMode="contains">
+									<h:outputText value="#{opp.accName}" />
+								</p:column>
+								<p:column headerText="#{ivy.cms.co('/Dialogs/listOpps/amount')}"
+									width="100px;" sortBy="#{opp.amount}" filterBy="#{opp.amount}"
+									filterMatchMode="contains">
+									<h:outputText value="#{opp.amount}" />
+								</p:column>
+								<p:column
+									headerText="#{ivy.cms.co('/Dialogs/listOpps/closeDate')}"
+									width="100px;" sortBy="#{opp.closeDate}"
+									filterBy="#{opp.closeDate}" filterMatchMode="contains">
+									<h:outputText value="#{opp.closeDate}">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
+									</h:outputText>
+								</p:column>
+								<p:column headerText="#{ivy.cms.co('/Dialogs/listOpps/stage')}"
+									width="100px;" sortBy="#{opp.stage}" filterBy="#{opp.stage}"
+									filterMatchMode="contains">
+									<h:outputText value="#{opp.stage}" />
+								</p:column>
+								<p:column id="actionColumn" toggleable="false"
+									headerText="#{ivy.cms.co('/Dialogs/listOpps/action')}"
+									width="60px;" exportable="false" selectRow="false">
+									<p:commandLink id="edit"
+										actionListener="#{data.bean.updateOppotunity(opp.id)}"
+										oncomplete="PF('opportunityUpdateDialog').show()"
+										update="#{p:resolveFirstComponentWithId('opportunityUpdatelForm', view).clientId}"
+										title="Edit">
+										<i class="fa fa-pencil mx-1" />
+									</p:commandLink>
+									<p:commandLink id="delete"
+										actionListener="#{logic.delete(opp.id)}" update="form"
+										styleClass="no-underline" title="Delete">
+										<i class="fa fa-trash mx-1" />
+										<p:confirm header="Confirmation"
+											message="Do you want to delete this record?"
+											icon="pi pi-info-circle" />
+									</p:commandLink>
+								</p:column>
+							</p:dataTable>
+						</div>
+					</div>
+				</div>
+				<br />
+				<div class="command-btns">
+					<p:commandButton id="proceed" actionListener="#{logic.close}"
+						value="Close" update="form" icon="si si-close" />
+				</div>
+			</h:form>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				responsive="true" width="350">
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no ui-button-flat" />
+				<p:commandButton value="Yes" type="button"
+					styleClass="ui-confirmdialog-yes" />
+			</p:confirmDialog>
+
+			<ui:include src="OppDetail.xhtml"></ui:include>
+			<ui:include src="UpdateOppotunity.xhtml"></ui:include>
+			<ui:include src="CreateOppotunity.xhtml"></ui:include>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

@@ -1,0 +1,71 @@
+{
+  "format" : "10.0.0",
+  "id" : "18BA90B58BA33FBC",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.UpdateServiceData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(String,OpportunityUpdateDTO)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "id", "type" : "String" },
+            { "name" : "opportunityUpdateDTO", "type" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO" }
+          ],
+          "map" : {
+            "out.id" : "param.id",
+            "out.opportunity" : "param.opportunityUpdateDTO"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "opp", "type" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 472, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RestClientCall",
+      "name" : "Update Opportunity",
+      "config" : {
+        "path" : "/sobjects/Opportunity/{id}",
+        "headers" : {
+          "Accept" : "*/*",
+          "X-Requested-By" : "in.opportunity"
+        },
+        "bodyObjectMapping" : {
+          "param" : "in.opportunity"
+        },
+        "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+        "clientErrorCode" : "ivy:error:rest:client",
+        "method" : "PATCH",
+        "statusErrorCode" : "ivy:error:rest:client",
+        "bodyObjectType" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO",
+        "templateParams" : {
+          "subdomain" : "",
+          "id" : "in.id"
+        },
+        "resultType" : "com.fasterxml.jackson.databind.JsonNode",
+        "bodyInputType" : "ENTITY"
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 },
+        "icon" : "res:/webContent/icons/Salesforce-logo.jpg"
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

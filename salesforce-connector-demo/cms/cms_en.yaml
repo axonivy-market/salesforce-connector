@@ -1,0 +1,10 @@
+Dialogs:
+  listOpps:
+    accName: Account Name
+    action: Action
+    amount: Amount
+    chart: Chart
+    closeDate: Close Date
+    listOpps: List Opportunities
+    oppName: Opportunity Name
+    stage: Stage
