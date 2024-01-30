@@ -1,0 +1,4 @@
+ListServiceData #class
+com.axonivy.connector.salesforce #namespace
+query String #field
+opps java.util.List<com.axonivy.connector.salesforce.model.Opportunity> #field

@@ -1,0 +1,67 @@
+{
+  "format" : "10.0.0",
+  "id" : "18BB73309E53F2DD",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.GetAccountServiceData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(String)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "id", "type" : "String" }
+          ],
+          "map" : {
+            "out.id" : "param.id"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "acc", "type" : "com.axonivy.connector.salesforce.model.Account" }
+          ],
+          "map" : {
+            "result.acc" : "in.acc"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 472, "y" : 64 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "RestClientCall",
+      "name" : "get Account",
+      "config" : {
+        "path" : "/sobjects/Account/{id}",
+        "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+        "clientErrorCode" : "ivy:error:rest:client",
+        "statusErrorCode" : "ivy:error:rest:client",
+        "templateParams" : {
+          "subdomain" : "",
+          "id" : "in.id"
+        },
+        "resultType" : "com.fasterxml.jackson.databind.JsonNode",
+        "responseCode" : [
+          "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
+          "",
+          "in.acc = ConvertUtils.convertToAccount(result);"
+        ]
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 },
+        "icon" : "res:/webContent/icons/Salesforce-logo.jpg"
+      },
+      "connect" : { "id" : "f4", "to" : "f1" }
+    } ]
+}

@@ -1,7 +1,6 @@
-# MY-PRODUCT-NAME
+# Salesforce Connector
+[![CI Build](https://github.com/axonivy-market/salesforce-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/salesforce-connector/actions/workflows/ci.yml)
 
-[![CI Build](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml)
+This connector builds the REST API and provides a means to access Salesforce's resources. A client can utilize the REST API to manipulate Salesforce (SF) objects. 
 
-"YOUR SHORT DESCRIPTION GOES HERE"
-
-Read our [documentation](MY-PRODUCT-NAME-product/README.md).
+Read our [documentation](salesforce-connector-product/README.md).
