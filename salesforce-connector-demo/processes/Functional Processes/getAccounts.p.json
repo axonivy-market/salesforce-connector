@@ -1,0 +1,57 @@
+{
+  "format" : "10.0.0",
+  "id" : "18BF4F8754BA3BE2",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getAllAccounts()",
+      "config" : {
+        "callSignature" : "getAllAccounts",
+        "result" : {
+          "params" : [
+            { "name" : "accs", "type" : "java.util.List<com.axonivy.connector.salesforce.model.Account>" }
+          ],
+          "map" : {
+            "result.accs" : "in.accs"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "SubProcessCall",
+      "name" : "QueryService",
+      "config" : {
+        "call" : {
+          "params" : [
+            { "name" : "query", "type" : "String" }
+          ],
+          "code" : "param.query = ivy.html.escape(\"Select FIELDS(ALL) from Account LIMIT 200\");"
+        },
+        "processCall" : "QueryService:call(String)",
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
+            "out.accs = ConvertUtils.convertToListAccounts(result.jsonNode);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}
