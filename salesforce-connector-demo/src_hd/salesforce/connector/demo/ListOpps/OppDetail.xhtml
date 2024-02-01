@@ -1,0 +1,304 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<p:dialog id="opportunityDetail" widgetVar="opportunityDetailDialog"
+	header="Opportunity Detail" width="800" appendTo="@(body)" modal="true"
+	dynamic="true" resizable="false" styleClass="position-absolute">
+	<h:form id="opportunityDetailForm">
+		<div class="ui-fluid">
+			<p:tabView>
+				<p:tab title="Details">
+					<h:panelGroup id="opportunityDetailGroup">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Opportunity Owner" for="oppOwnerView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="oppOwnerView" disabled="true"
+											value="#{data.bean.selectedOpp.ownerId}"></p:inputText>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Amount" for="amountView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="amountView" disabled="true"
+											value="#{data.bean.selectedOpp.amount}"></p:inputText>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Private" for="privateView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:selectBooleanCheckbox id="privateView" disabled="true"
+											value="#{data.bean.selectedOpp.isPrivate}"></p:selectBooleanCheckbox>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Expected Revenue" for="RevenueView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="RevenueView" disabled="true"
+											value="#{data.bean.selectedOpp.expectedRevenue}"></p:inputText>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Opportunity Name" for="oppNameView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="oppNameView" disabled="true"
+											value="#{data.bean.selectedOpp.name}"></p:inputText>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Close Date" for="closeDateView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="closeDateView" disabled="true"
+											value="#{data.bean.selectedOpp.closeDate}">
+											<f:convertDateTime pattern="dd.MM.yyyy" />
+										</p:inputText>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Account Name" for="accNameView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="accNameView" disabled="true"
+											value="#{data.bean.accountName}"></p:inputText>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g-12 ui-md-6 ui-lg-6"></div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Type" for="typeView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="typeView" disabled="true"
+											value="#{data.bean.selectedOpp.type}"></p:inputText>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Stage" for="stageView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="stageView" disabled="true"
+											value="#{data.bean.selectedOpp.stageName}"></p:inputText>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Lead Source" for="leadSourceView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="leadSourceView" disabled="true"
+											value="#{data.bean.selectedOpp.leadSource}"></p:inputText>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-4 ui-lg-4">
+										<p:outputLabel value="Probability (%)" for="probabilityView"></p:outputLabel>
+									</div>
+									<div class="ui-g-12 ui-md-8 ui-lg-8">
+										<p:inputText id="probabilityView" disabled="true"
+											value="#{data.bean.selectedOpp.probability}%"></p:inputText>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-12 ui-lg-12">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-12 ui-lg-12">
+										<p:outputLabel value="Description" for="descriptionView"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-12 ui-lg-12">
+										<p:inputTextarea id="descriptionView" disabled="true"
+											value="#{data.bean.selectedOpp.description}"></p:inputTextarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</h:panelGroup>
+				</p:tab>
+				<p:tab title="Activity">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-12 ui-lg-12">
+							<h3>Tasks</h3>
+							<p:accordionPanel value="#{data.bean.activityDTO.tasks}" var="task">
+								<p:tab title="#{task.subject}">
+									<div class="ui-g">
+										<div class="ui-g-12 ui-md-6 ui-lg-6">
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Assigned To: "/>	#{task.ownerId}
+											</div>
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Subject: "/>	#{task.subject}
+											</div>
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Due Date: "/>
+												<h:outputText value="#{task.completedDateTime}">
+													<f:convertDateTime pattern="dd.MM.yyyy"/>
+												</h:outputText>
+											</div>
+											
+										</div>
+										<div class="ui-g-12 ui-md-6 ui-lg-6">
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Status: "/>	#{task.status}
+											</div>		
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Name: "/>	#{task.name}
+											</div>
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Related To: "/>	#{data.bean.selectedOpp.name}
+											</div>
+										</div>
+									</div>
+									<div class="ui-g">
+										<div class="ui-g-12 ui-md-12 ui-lg-12">
+											<p:outputLabel value="Description: "/>
+										</div>
+									</div>
+									<div class="ui-g">
+										<div class="ui-g-12 ui-md-12 ui-lg-12">
+											<div class="slds-form-element_readonly">
+												#{task.description}
+											</div>
+										</div>
+									</div>
+								</p:tab>
+							</p:accordionPanel>
+						</div>
+					</div>
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-12 ui-lg-12">
+							<h3>Events</h3>
+							<p:accordionPanel value="#{data.bean.activityDTO.events}" var="event">
+								<p:tab title="#{event.subject}">
+									<div class="ui-g">
+										<div class="ui-g-12 ui-md-6 ui-lg-6">
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Assigned To: "/>	#{event.ownerId} 
+											</div>
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Subject: "/>	#{event.subject}
+											</div>
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Name: "/>	#{event.name}
+											</div>
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Related To: "/>	#{data.bean.selectedOpp.name}
+											</div>
+											
+										</div>
+										<div class="ui-g-12 ui-md-6 ui-lg-6">
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Location: "/>	#{event.location}
+											</div>		
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="Start: "/>
+												<h:outputText value="#{event.startDateTime}">
+													<f:convertDateTime pattern="dd.MM.yyyy" />
+												</h:outputText>
+											</div>
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="End: "/>
+												<h:outputText value="#{event.endDateTime}">
+													<f:convertDateTime pattern="dd.MM.yyyy" />
+												</h:outputText>
+											</div>
+											<div class="slds-form-element_readonly">
+												<p:outputLabel value="All-Day Event: "/>
+												<p:selectBooleanCheckbox value="#{event.isAllDayEvent}" disabled="true"></p:selectBooleanCheckbox>
+											</div>
+										</div>
+									</div>
+									<div class="ui-g">
+										<div class="ui-g-12 ui-md-12 ui-lg-12">
+											<p:outputLabel value="Description: "/>
+											
+										</div>
+									</div>
+									<div class="ui-g">
+										<div class="ui-g-12 ui-md-12 ui-lg-12">
+											<div class="slds-form-element_readonly">
+												#{event.description}
+											</div>
+										</div>
+									</div>
+								</p:tab>
+							</p:accordionPanel>
+						</div>
+					</div>
+				</p:tab>
+			</p:tabView>
+			<h:panelGroup>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-6 ui-lg-6" />
+					<div class="ui-g-12 ui-md-3 ui-lg-3"></div>
+					<div class="ui-g-12 ui-md-3 ui-lg-3">
+						<p:commandButton id="closeDetail"
+							oncomplete="PF('opportunityDetailDialog').hide()"
+							value="Close" icon="pi pi-time">
+						</p:commandButton>
+					</div>
+				</div>
+			</h:panelGroup>
+		</div>
+	</h:form>
+	<style>
+		.slds-form-element_readonly{
+			padding: 12px;
+			border-bottom: 0.1px solid #ebe6e6;
+		}
+	</style>
+</p:dialog>
+</html>
