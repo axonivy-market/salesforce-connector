@@ -1,15 +1,16 @@
-# Salesforce-connector
+# Salesforce REST API
 
-This connector builds the REST API and provides a means to access Salesforce's resources. A client can utilize the REST API to manipulate Salesforce (SF) objects. For instance, to perform **CRUD** operations on an Opportunity object or to query and retrieve data. Salesforce Connector:
+This connector builds the REST API and provides a way to access Salesforce resources. A client can use the REST API to manipulate Salesforce objects. Examples are performing CRUD operations on an opportunity object or to querying and retrieving data. This connector:
 
-- Provides the standard set of Rest APIs to manipulate one specific object of SalesForce Opportunity.
-- Track the status and the number of each status Opportunity.
-- Manipulate the object Opportunity.
-- Build a standard Rest client to apply Salesforce Object Query Language (SOQL).
+- Provides the standard set of REST APIs to manipulate one specific object of Salesforce Opportunity.
+- Tracks the status and the number of each status Opportunity.
+- Manipulatea the object Opportunity and builds a standard REST client to apply Salesforce Object Query Language (SOQL).
+- Supports you with an easy-to-copy demo implementation to reduce your integration effort.
+- Enables low code citizen developers to integrate existing 3rd party systems.
 
 ## Demo
 
-  1. Login to the Axon Ivy
+  1. Login to the Axon Ivy platform
   2. Click **Starts** in the Axon Ivy menu to open the Full Process List
   3. On the Full Process List, click on **ChartDemo**.
   
@@ -27,7 +28,7 @@ This connector builds the REST API and provides a means to access Salesforce's r
   
   ![list-opportunity](/salesforce-connector-product/doc/img/sf-list.png)
   
-  7. Click on the Add New button:
+  7. Click on the "Add New" button:
   
   ![add-new-opportunity](/salesforce-connector-product/doc/img/sf-start-addNew.png)
   
@@ -55,7 +56,7 @@ This connector builds the REST API and provides a means to access Salesforce's r
   
   ![modify-opportunity-popup](/salesforce-connector-product/doc/img/sf-edit.png)
   
-  14. Click on the icon Trash to remove an Opportunity:
+  14. Click on the icon "Trash" to remove an Opportunity:
   
   ![delete-opportunity](/salesforce-connector-product/doc/img/sf-start-delete.png)
   
@@ -66,7 +67,7 @@ This connector builds the REST API and provides a means to access Salesforce's r
 
 ## Setup
 
-### Configure on the SF Application
+### Configuration on Salesforce side
   For a client application to access REST API resources, it must be authorized as a trusted visitor. To implement this authorization, utilize a **Connected App** and employ the **OAuth 2.0** authorization flow.
 
   **Important steps**
@@ -77,7 +78,7 @@ This connector builds the REST API and provides a means to access Salesforce's r
     - Set up Named Credentials to manage and secure access to external services.
 
 
-### Integrate Connector into the Project
+### Integrate the connector into your project
   The **Consumer Key** and **Consumer Secret** are retrieved from the **Connected App** and placed in the `variables.yaml` file.
 
   Authentication information is set up as a global variable and can be updated anytime.
