@@ -17,18 +17,18 @@ Example App domain: axonactive3-dev-ed.develop
 
 1. Create the Connected App to generate authentication information
 
-![plot](/salesforce-connector-product/doc/img/sf-connected-app-01.png)
+![plot](images/sf-connected-app-01.png)
 
-![plot](/salesforce-connector-product/doc/img/sf-connected-app-02.png)
+![plot](images/sf-connected-app-02.png)
 
 2. Set up Auth. Providers
 
-![plot](/salesforce-connector-product/doc/img/sf-oauth-providers.png)
+![plot](images/sf-oauth-providers.png)
 
 3. Enable some settings for OAuth2.0
 
-![plot](/salesforce-connector-product/doc/img/sf-oauth-settings.png)
+![plot](images/sf-oauth-settings.png)
 
 3. Set up Named Credentials
 
-![plot](/salesforce-connector-product/doc/img/sf-name-credentials.png)
+![plot](images/sf-name-credentials.png)
