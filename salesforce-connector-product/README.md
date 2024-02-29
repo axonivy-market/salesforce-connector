@@ -14,55 +14,55 @@ This connector builds the REST API and provides a way to access Salesforce resou
   2. Click **Starts** in the Axon Ivy menu to open the Full Process List
   3. On the Full Process List, click on **ChartDemo**.
   
-  ![process-start-chart](/salesforce-connector-product/doc/img/sf-start-chart.png)
+  ![process-start-chart](images/sf-start-chart.png)
   
   4. A simple chart for statistical analysis:
   
-  ![simple-chart](/salesforce-connector-product/doc/img/sf-chart.png)
+  ![simple-chart](images/sf-chart.png)
   
   5. On the Full Process List, click on **ListDemo**.
   
-  ![process-start-list](/salesforce-connector-product/doc/img/sf-start-list.png)
+  ![process-start-list](images/sf-start-list.png)
   
   6. Opportunity Overview:
   
-  ![list-opportunity](/salesforce-connector-product/doc/img/sf-list.png)
+  ![list-opportunity](images/sf-list.png)
   
   7. Click on the "Add New" button:
   
-  ![add-new-opportunity](/salesforce-connector-product/doc/img/sf-start-addNew.png)
+  ![add-new-opportunity](images/sf-start-addNew.png)
   
   8. Add new Opportunity:
   
-  ![add-new-opportunity-popup](/salesforce-connector-product/doc/img/sf-addNew.png)
+  ![add-new-opportunity-popup](images/sf-addNew.png)
   
   9. Click on Opportunity Name to view details:
   
-  ![add-new-opportunity-summary](/salesforce-connector-product/doc/img/sf-start-detail.png)
+  ![add-new-opportunity-summary](images/sf-start-detail.png)
   
   10. Opportunity details:
   
-  ![opportunity-details-dialog](/salesforce-connector-product/doc/img/sf-detail.png)
+  ![opportunity-details-dialog](images/sf-detail.png)
   
   11. Opportunity details Activity:
   
-  ![opportunity-details-activity](/salesforce-connector-product/doc/img/sf-detail-activity.png)
+  ![opportunity-details-activity](images/sf-detail-activity.png)
   
   12. Click on the icon Pencil to Update an Opportunity:
   
-  ![modify-opportunity](/salesforce-connector-product/doc/img/sf-start-edit.png)
+  ![modify-opportunity](images/sf-start-edit.png)
   
   13. Edit Opportunity:
   
-  ![modify-opportunity-popup](/salesforce-connector-product/doc/img/sf-edit.png)
+  ![modify-opportunity-popup](images/sf-edit.png)
   
   14. Click on the icon "Trash" to remove an Opportunity:
   
-  ![delete-opportunity](/salesforce-connector-product/doc/img/sf-start-delete.png)
+  ![delete-opportunity](images/sf-start-delete.png)
   
   15. Delete Opportunity:
   
-  ![delete-opportunity-popup](/salesforce-connector-product/doc/img/sf-delete.png)
+  ![delete-opportunity-popup](images/sf-delete.png)
 
 
 ## Setup
