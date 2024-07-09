@@ -109,7 +109,7 @@ This connector builds the REST API and provides a way to access Salesforce resou
 
 4. Set up Named Credentials to manage and secure access to external services
  
-- Go to **Setup** -> **Named Credentials**
+- Go to **Setup** -> **Named Credentials** -> **New legacy**
 
   ![named-credential](images/sf-named-credential.png)
 
