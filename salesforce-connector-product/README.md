@@ -71,11 +71,47 @@ This connector builds the REST API and provides a way to access Salesforce resou
   For a client application to access REST API resources, it must be authorized as a trusted visitor. To implement this authorization, utilize a **Connected App** and employ the **OAuth 2.0** authorization flow.
 
   **Important steps**
-  
-    - Create a Connected App to generate the necessary authentication information.
-    - Configure authentication providers for your application.
-    - Activate the required settings in OAuth and OpenID Connect settings to facilitate secure authentication.
-    - Set up Named Credentials to manage and secure access to external services.
+
+  1. Create a Connected App to generate the necessary authentication information
+
+- Go to **Setup** -> **Apps** -> **App Manager** -> click on button **New Connected App**
+
+  ![new-connected-app](images/sf-app-manager-01.png)
+
+- Input all needed information
+
+  ![input-connected-app-info](images/sf-app-manager-02.png)
+
+- Generate Consumer key And Consumer secret
+
+  ![consumer key and secret](images/sf-app-manager-04.png)
+
+- Configure Client credential flow
+
+  ![client-credential-flow-user](images/sf-app-manager-03.png)
+
+
+2. Configure authentication providers for your application
+ 
+- Go to **Setup** -> **Auth.provider** -> **New**
+
+  ![auth-provider](images/sf-auth-provider.png)
+
+
+
+3. Activate the required settings in OAuth and OpenID Connect settings to facilitate secure authentication
+ 
+- Go to **Setup** -> **OAuth and OpenID Connect Settings** -> Enable checkboxes
+
+  ![oauth-and-openId](images/sf-auth-openId.png)
+
+
+
+4. Set up Named Credentials to manage and secure access to external services
+ 
+- Go to **Setup** -> **Named Credentials**
+
+  ![named-credential](images/sf-named-credential.png)
 
 
 ### Integrate the connector into your project
