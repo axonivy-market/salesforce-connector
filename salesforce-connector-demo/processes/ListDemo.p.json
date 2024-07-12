@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "18BB73FF80B2F1D9",
   "config" : {
     "data" : "com.axonivy.connector.salesforce.Data"
@@ -9,13 +9,14 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
-        "outLink" : "start.ivp"
+        "signature" : "start"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f3", "to" : "f5" }
+      "connect" : [
+        { "id" : "f3", "to" : "f5" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -27,21 +28,22 @@
       "type" : "UserTask",
       "name" : "ListOpps",
       "config" : {
-        "dialogId" : "salesforce.connector.demo.ListOpps",
-        "startMethod" : "start()",
-        "case" : {
-          "name" : "Opportunities",
-          "description" : "List Opportunities"
-        },
+        "dialog" : "salesforce.connector.demo.ListOpps:start()",
         "task" : {
           "name" : "Opportunities",
           "description" : "List Opportunities",
           "skipTasklist" : true
+        },
+        "case" : {
+          "name" : "Opportunities",
+          "description" : "List Opportunities"
         }
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }
