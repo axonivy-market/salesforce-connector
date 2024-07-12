@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "18BB792E496189BE",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "getAccount(String)",
       "config" : {
-        "callSignature" : "getAccount",
+        "signature" : "getAccount",
         "input" : {
           "params" : [
-            { "name" : "id", "type" : "String" }
+            { "name" : "id", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.id" : "param.id"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "acc", "type" : "com.axonivy.connector.salesforce.model.Account" }
+            { "name" : "acc", "type" : "com.axonivy.connector.salesforce.model.Account", "desc" : "" }
           ],
           "map" : {
             "result.acc" : "in.acc"
@@ -31,7 +31,9 @@
       "visual" : {
         "at" : { "x" : 184, "y" : 224 }
       },
-      "connect" : { "id" : "f1", "to" : "f0" }
+      "connect" : [
+        { "id" : "f1", "to" : "f0" }
+      ]
     }, {
       "id" : "f5",
       "type" : "CallSubEnd",
@@ -44,24 +46,23 @@
       "name" : "GetAccService",
       "config" : {
         "processCall" : "GetAccService:call(String)",
+        "call" : {
+          "map" : {
+            "param.id" : "in.id"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.acc" : "result.acc"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "id", "type" : "String" }
-          ],
-          "map" : {
-            "param.id" : "in.id"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 376, "y" : 224 }
       },
-      "connect" : { "id" : "f2", "to" : "f5" }
+      "connect" : [
+        { "id" : "f2", "to" : "f5" }
+      ]
     } ]
 }

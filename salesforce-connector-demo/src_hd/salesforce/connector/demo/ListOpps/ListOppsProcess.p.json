@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "18BB743AA45B474E",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,8 +10,9 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
+          "map" : { },
           "code" : [
             "import com.axonivy.connector.salesforce.ListOppsBean;",
             "",
@@ -23,7 +24,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -40,7 +43,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -52,31 +57,30 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "save()",
       "config" : {
-        "callSignature" : "save",
+        "signature" : "save",
         "guid" : "18BEBBEEF1B67B0D"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 280 }
       },
-      "connect" : { "id" : "f14", "to" : "f13" }
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
     }, {
       "id" : "f7",
       "type" : "SubProcessCall",
       "name" : "AddOppService",
       "config" : {
         "processCall" : "AddOppService:call(com.axonivy.connector.salesforce.model.Opportunity)",
+        "call" : {
+          "map" : {
+            "param.opportunity" : "in.bean.selectedOpp"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.bean.selectedOpp.id" : "result.opp.id"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "oppotunity", "type" : "com.axonivy.connector.salesforce.model.Opportunity" }
-          ],
-          "map" : {
-            "param.opportunity" : "in.bean.selectedOpp"
           }
         }
       },
@@ -89,9 +93,13 @@
           "visual" : {
             "at" : { "x" : 416, "y" : 320 }
           },
-          "connect" : { "id" : "f25", "to" : "f9", "via" : [ { "x" : 672, "y" : 320 } ] }
+          "connect" : [
+            { "id" : "f25", "to" : "f9", "via" : [ { "x" : 672, "y" : 320 } ] }
+          ]
         } ],
-      "connect" : { "id" : "f12", "to" : "f11" }
+      "connect" : [
+        { "id" : "f12", "to" : "f11" }
+      ]
     }, {
       "id" : "f9",
       "type" : "HtmlDialogEnd",
@@ -119,7 +127,9 @@
       "visual" : {
         "at" : { "x" : 544, "y" : 280 }
       },
-      "connect" : { "id" : "f10", "to" : "f9" }
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
     }, {
       "id" : "f13",
       "type" : "Script",
@@ -132,19 +142,23 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 280 }
       },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
     }, {
       "id" : "f15",
       "type" : "HtmlDialogMethodStart",
       "name" : "update()",
       "config" : {
-        "callSignature" : "update",
+        "signature" : "update",
         "guid" : "18BF5BD97C43B688"
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 416 }
       },
-      "connect" : { "id" : "f21", "to" : "f20" }
+      "connect" : [
+        { "id" : "f21", "to" : "f20" }
+      ]
     }, {
       "id" : "f17",
       "type" : "HtmlDialogEnd",
@@ -158,10 +172,6 @@
       "config" : {
         "processCall" : "UpdateOppService:call(String,com.axonivy.connector.salesforce.model.OpportunityUpdateDTO)",
         "call" : {
-          "params" : [
-            { "name" : "id", "type" : "String" },
-            { "name" : "opportunityUpdateDTO", "type" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO" }
-          ],
           "map" : {
             "param.id" : "in.bean.selectedOpp.id",
             "param.opportunityUpdateDTO" : "in.bean.updateDTO"
@@ -177,9 +187,13 @@
           "visual" : {
             "at" : { "x" : 456, "y" : 456 }
           },
-          "connect" : { "id" : "f27", "to" : "f17", "via" : [ { "x" : 712, "y" : 456 } ] }
+          "connect" : [
+            { "id" : "f27", "to" : "f17", "via" : [ { "x" : 712, "y" : 456 } ] }
+          ]
         } ],
-      "connect" : { "id" : "f23", "to" : "f22" }
+      "connect" : [
+        { "id" : "f23", "to" : "f22" }
+      ]
     }, {
       "id" : "f20",
       "type" : "Script",
@@ -192,7 +206,9 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 416 }
       },
-      "connect" : { "id" : "f18", "to" : "f16" }
+      "connect" : [
+        { "id" : "f18", "to" : "f16" }
+      ]
     }, {
       "id" : "f22",
       "type" : "Script",
@@ -205,16 +221,18 @@
       "visual" : {
         "at" : { "x" : 584, "y" : 416 }
       },
-      "connect" : { "id" : "f19", "to" : "f17" }
+      "connect" : [
+        { "id" : "f19", "to" : "f17" }
+      ]
     }, {
       "id" : "f28",
       "type" : "HtmlDialogMethodStart",
       "name" : "delete(String)",
       "config" : {
-        "callSignature" : "delete",
+        "signature" : "delete",
         "input" : {
           "params" : [
-            { "name" : "id", "type" : "String" }
+            { "name" : "id", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.id" : "param.id"
@@ -225,7 +243,9 @@
       "visual" : {
         "at" : { "x" : 88, "y" : 544 }
       },
-      "connect" : { "id" : "f36", "to" : "f35" }
+      "connect" : [
+        { "id" : "f36", "to" : "f35" }
+      ]
     }, {
       "id" : "f29",
       "type" : "SubProcessCall",
@@ -233,9 +253,6 @@
       "config" : {
         "processCall" : "DeleteOppService:call(String)",
         "call" : {
-          "params" : [
-            { "name" : "id", "type" : "String" }
-          ],
           "map" : {
             "param.id" : "in.id"
           }
@@ -250,9 +267,13 @@
           "visual" : {
             "at" : { "x" : 448, "y" : 584 }
           },
-          "connect" : { "id" : "f38", "to" : "f31", "via" : [ { "x" : 720, "y" : 584 } ] }
+          "connect" : [
+            { "id" : "f38", "to" : "f31", "via" : [ { "x" : 720, "y" : 584 } ] }
+          ]
         } ],
-      "connect" : { "id" : "f34", "to" : "f33" }
+      "connect" : [
+        { "id" : "f34", "to" : "f33" }
+      ]
     }, {
       "id" : "f31",
       "type" : "HtmlDialogEnd",
@@ -271,7 +292,9 @@
       "visual" : {
         "at" : { "x" : 600, "y" : 544 }
       },
-      "connect" : { "id" : "f32", "to" : "f31" }
+      "connect" : [
+        { "id" : "f32", "to" : "f31" }
+      ]
     }, {
       "id" : "f35",
       "type" : "Script",
@@ -284,6 +307,8 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 544 }
       },
-      "connect" : { "id" : "f30", "to" : "f29" }
+      "connect" : [
+        { "id" : "f30", "to" : "f29" }
+      ]
     } ]
 }
