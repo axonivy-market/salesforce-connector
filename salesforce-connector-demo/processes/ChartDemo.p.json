@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "18C19135AC79638F",
   "config" : {
     "data" : "com.axonivy.connector.salesforce.Data"
@@ -9,13 +9,14 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
-        "outLink" : "start.ivp"
+        "signature" : "start"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f3", "to" : "f2" }
+      "connect" : [
+        { "id" : "f3", "to" : "f2" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -27,21 +28,22 @@
       "type" : "UserTask",
       "name" : "ChartDemo",
       "config" : {
-        "dialogId" : "salesforce.connector.demo.Chart",
-        "startMethod" : "start()",
-        "case" : {
-          "name" : "ChartDemo",
-          "description" : "Chart Demo"
-        },
+        "dialog" : "salesforce.connector.demo.Chart:start()",
         "task" : {
           "name" : "ChartDemo",
           "description" : "Chart Demo",
           "skipTasklist" : true
+        },
+        "case" : {
+          "name" : "ChartDemo",
+          "description" : "Chart Demo"
         }
       },
       "visual" : {
         "at" : { "x" : 288, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
     } ]
 }
