@@ -84,7 +84,7 @@ This connector builds the REST API and provides a way to access Salesforce resou
 
 - Generate Consumer key And Consumer secret
 
-  ![consumer key and secret](images/sf-app-manager-04.png)
+  ![consumer-key-and-secret](images/sf-app-manager-04.png)
 
 - Configure Client credential flow
 
