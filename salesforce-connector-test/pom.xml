@@ -5,6 +5,29 @@
   <artifactId>salesforce-connector-test</artifactId>
   <version>10.0.16-SNAPSHOT</version>
   <packaging>iar-integration-test</packaging>
+  <properties>
+    <project.build.plugin.version>10.0.16</project.build.plugin.version>
+    <tester.version>10.0.16</tester.version>
+  </properties>
+  <pluginRepositories>
+    <!-- Snapshot releases are available via sonatype.org -->
+    <pluginRepository>
+      <id>sonatype</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+  <repositories>
+    <repository>
+      <id>sonatype</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.connector.salesforce</groupId>
@@ -15,13 +38,13 @@
     <dependency>
       <groupId>com.axonivy.ivy.test</groupId>
       <artifactId>unit-tester</artifactId>
-      <version>10.0.0</version>
+      <version>${tester.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.axonivy.ivy.webtest</groupId>
       <artifactId>web-tester</artifactId>
-      <version>10.0.0</version>
+      <version>${tester.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -31,7 +54,7 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>10.0.16</version>
+        <version>${project.build.plugin.version}</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>
