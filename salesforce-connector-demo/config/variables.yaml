@@ -1,9 +1,15 @@
 # == Variables ==
-# 
+#
 # You can define here your project Variables.
 # If you want to define/override a Variable for a specific Environment, 
 # add an additional ‘variables.yaml’ file in a subdirectory in the ‘Config’ folder: 
 # '<project>/Config/_<environment>/variables.yaml
 #
 Variables:
-#  myVariable: value
+  salesforce-connector:
+    auth:
+      subdomain: axonactive3-dev-ed.develop
+      clientId: 3MVG95mg0lk4bathQF4Z_F1GcZZPr8ztvo29c53HhwOXnCKBkP8LkxHnb5KlydXj3Oomw0VHsY3qdrM8lzU76
+      clientSecret: 56C6CA448B49032828FE4C4DF16D1AF4804B8CC734E066B255A5B31A9895D9D8
+      useAppPermissions: "true"
+      url: https://axonactive3-dev-ed.develop.my.salesforce.com/services/data/v58.0
