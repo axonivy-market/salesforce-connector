@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.AppFixture;
 
-@IvyProcessTest
+@IvyProcessTest(enableWebServer = true)
 public class BaseTest {
 	@BeforeEach
 	void beforeEach(AppFixture fixture) {
