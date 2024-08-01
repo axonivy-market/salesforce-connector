@@ -10,7 +10,6 @@
     <tester.version>10.0.16</tester.version>
   </properties>
   <pluginRepositories>
-    <!-- Snapshot releases are available via sonatype.org -->
     <pluginRepository>
       <id>sonatype</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>

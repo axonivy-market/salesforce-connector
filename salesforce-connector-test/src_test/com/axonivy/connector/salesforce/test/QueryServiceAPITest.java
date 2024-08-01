@@ -19,7 +19,7 @@ import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 
-@IvyProcessTest
+@IvyProcessTest(enableWebServer = true)
 public class QueryServiceAPITest extends BaseTest {
 	private static final BpmProcess QUERYSERVICE_PROCESS = BpmProcess.path("QueryService");
 
