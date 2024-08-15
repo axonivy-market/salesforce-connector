@@ -11,20 +11,20 @@ Dieser Konnektor:
 ## Demo
 
   1. Login to the Axon Ivy platform
-  2. Click **Starts** in the Axon Ivy menu to open the Full Process List
-  3. On the Full Process List, click on **ChartDemo**.
+  2. Click **Starts** in the Axon Ivy menu to open the available process starts
+  3. Click on **ChartDemo**.
   
   ![process-start-chart](images/sf-start-chart.png)
   
-  4. A simple chart for statistical analysis:
+  4. The connector fetches all Salesforce opportunities via the REST API and display them as a bar chart
   
   ![simple-chart](images/sf-chart.png)
   
-  5. On the Full Process List, click on **ListDemo**.
+  5. Click on **ListDemo**.
   
   ![process-start-list](images/sf-start-list.png)
   
-  6. Opportunity Overview:
+  6. In this demo the connector displays the opportunities as list:
   
   ![list-opportunity](images/sf-list.png)
   
@@ -32,7 +32,7 @@ Dieser Konnektor:
   
   ![add-new-opportunity](images/sf-start-addNew.png)
   
-  8. Add new Opportunity:
+  8. Add a new opportunity:
   
   ![add-new-opportunity-popup](images/sf-addNew.png)
   
@@ -48,19 +48,19 @@ Dieser Konnektor:
   
   ![opportunity-details-activity](images/sf-detail-activity.png)
   
-  12. Click on the icon Pencil to Update an Opportunity:
+  12. Click on the icon "Pencil" to update an opportunity:
   
   ![modify-opportunity](images/sf-start-edit.png)
   
-  13. Edit Opportunity:
+  13. Edit opportunity:
   
   ![modify-opportunity-popup](images/sf-edit.png)
   
-  14. Click on the icon "Trash" to remove an Opportunity:
+  14. Click on the icon "Trash" to remove an opportunity:
   
   ![delete-opportunity](images/sf-start-delete.png)
   
-  15. Delete Opportunity:
+  15. Delete opportunity:
   
   ![delete-opportunity-popup](images/sf-delete.png)
 
