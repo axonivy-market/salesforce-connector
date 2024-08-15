@@ -32,7 +32,7 @@ This connector:
   
   ![add-new-opportunity](images/sf-start-addNew.png)
   
-  8. Add new Opportunity:
+  8. Add a new opportunity:
   
   ![add-new-opportunity-popup](images/sf-addNew.png)
   
