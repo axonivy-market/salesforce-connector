@@ -24,7 +24,7 @@ This connector:
   
   ![process-start-list](images/sf-start-list.png)
   
-  6. Opportunity Overview:
+  6. In this demo the connector displays the opportunities as list:
   
   ![list-opportunity](images/sf-list.png)
   
