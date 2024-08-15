@@ -11,7 +11,7 @@ This connector:
 ## Demo
 
   1. Login to the Axon Ivy platform
-  2. Click **Starts** in the Axon Ivy menu to open the Full Process List
+  2. Click **Starts** in the Axon Ivy menu to open the available process starts
   3. Click on **ChartDemo**.
   
   ![process-start-chart](images/sf-start-chart.png)
