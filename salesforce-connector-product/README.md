@@ -16,7 +16,7 @@ This connector:
   
   ![process-start-chart](images/sf-start-chart.png)
   
-  4. A simple chart for statistical analysis:
+  4. The connector fetches all opportunities and display them as a bar chart
   
   ![simple-chart](images/sf-chart.png)
   
