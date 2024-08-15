@@ -1,12 +1,13 @@
 # Salesforce REST API
 
-This connector builds the REST API and provides a way to access Salesforce resources. A client can use the REST API to manipulate Salesforce objects. Examples are performing CRUD operations on an opportunity object or to querying and retrieving data. This connector:
+This connector uses the Salesforce REST API and provides a way to **access** Salesforce resources and **manipulate** objects. 
 
-- Provides the standard set of REST APIs to manipulate one specific object of Salesforce Opportunity.
-- Tracks the status and the number of each status Opportunity.
-- Manipulatea the object Opportunity and builds a standard REST client to apply Salesforce Object Query Language (SOQL).
-- Supports you with an easy-to-copy demo implementation to reduce your integration effort.
-- Enables low code citizen developers to integrate existing 3rd party systems.
+This connector:
+
+- uses the REST API to process a Salesforce opportunity.
+- tracks the status of opportunities
+- manipulates opportunities using the Salesforce Object Query Language (SOQL).
+- supports you with a demo implementation to reduce your integration effort.
 
 ## Demo
 
