@@ -16,7 +16,7 @@ This connector:
   
   ![process-start-chart](images/sf-start-chart.png)
   
-  4. The connector fetches all opportunities and display them as a bar chart
+  4. The connector fetches all Salesforce opportunities via the REST API and display them as a bar chart
   
   ![simple-chart](images/sf-chart.png)
   
