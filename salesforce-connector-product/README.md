@@ -7,7 +7,6 @@ This connector:
 - uses the REST API to process a Salesforce opportunity.
 - tracks the status of opportunities
 - manipulates opportunities using the Salesforce Object Query Language (SOQL).
-- supports you with a demo implementation to reduce your integration effort.
 
 ## Demo
 
