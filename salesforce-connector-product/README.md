@@ -20,7 +20,7 @@ This connector:
   
   ![simple-chart](images/sf-chart.png)
   
-  5. On the Full Process List, click on **ListDemo**.
+  5. Click on **ListDemo**.
   
   ![process-start-list](images/sf-start-list.png)
   
