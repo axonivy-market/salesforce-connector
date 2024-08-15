@@ -48,19 +48,19 @@ This connector:
   
   ![opportunity-details-activity](images/sf-detail-activity.png)
   
-  12. Click on the icon Pencil to Update an Opportunity:
+  12. Click on the icon "Pencil" to update an opportunity:
   
   ![modify-opportunity](images/sf-start-edit.png)
   
-  13. Edit Opportunity:
+  13. Edit opportunity:
   
   ![modify-opportunity-popup](images/sf-edit.png)
   
-  14. Click on the icon "Trash" to remove an Opportunity:
+  14. Click on the icon "Trash" to remove an opportunity:
   
   ![delete-opportunity](images/sf-start-delete.png)
   
-  15. Delete Opportunity:
+  15. Delete opportunity:
   
   ![delete-opportunity-popup](images/sf-delete.png)
 
