@@ -10,7 +10,6 @@
     <tester.version>10.0.16</tester.version>
   </properties>
   <pluginRepositories>
-    <!-- Snapshot releases are available via sonatype.org -->
     <pluginRepository>
       <id>sonatype</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -38,12 +37,6 @@
     <dependency>
       <groupId>com.axonivy.ivy.test</groupId>
       <artifactId>unit-tester</artifactId>
-      <version>${tester.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.axonivy.ivy.webtest</groupId>
-      <artifactId>web-tester</artifactId>
       <version>${tester.version}</version>
       <scope>test</scope>
     </dependency>
