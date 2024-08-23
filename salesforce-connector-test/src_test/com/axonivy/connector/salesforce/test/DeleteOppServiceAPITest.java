@@ -15,7 +15,7 @@ import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 
-@IvyProcessTest(enableWebServer = true)
+@IvyProcessTest
 public class DeleteOppServiceAPITest extends BaseTest {
 	private static final BpmProcess DELETEOPPSERVICE_PROCESS = BpmProcess.path("DeleteOppService");
 
