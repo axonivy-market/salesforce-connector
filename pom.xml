@@ -3,7 +3,7 @@
   <groupId>com.axonivy.connector.salesforce</groupId>
   <name>salesforce-connector</name>
   <artifactId>salesforce-connector-modules</artifactId>
-  <version>10.0.16-SNAPSHOT</version>
+  <version>10.0.17-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
