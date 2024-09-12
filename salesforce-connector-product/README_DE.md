@@ -1,12 +1,12 @@
 # Salesforce REST API
 
-This connector uses the Salesforce REST API and provides a way to **access** Salesforce resources and **manipulate** objects. 
+Dieser Konnektor nutzt die Salesforce REST-API und bietet dir Möglichkeiten, auf Salesforce-Ressourcen zuzugreifen und Salesforce-Objekte zu manipulieren. 
 
-This connector:
+Dieser Konnektor:
 
-- uses the REST API to process a Salesforce opportunity.
-- tracks the status of opportunities
-- manipulates opportunities using the Salesforce Object Query Language (SOQL).
+- nutzt die REST-API, um eine Salesforce Opportunity zu bearbeiten.
+- verfolgt den Status von Opportunities
+- manipuliert  Opportunities unter Verwendung der Salesforce Object Query Language (SOQL) anzuwenden.
 
 ## Demo
 
@@ -135,5 +135,6 @@ This connector:
 [Connected App](https://help.salesforce.com/s/articleView?id=sf.connected_app_client_credentials_setup.htm&type=5)
 
 [Salesforce SOQL](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm)
+
 
 
