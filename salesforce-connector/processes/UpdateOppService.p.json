@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18BA90B58BA33FBC",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,11 +10,11 @@
       "type" : "CallSubStart",
       "name" : "call(String,OpportunityUpdateDTO)",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "id", "type" : "String" },
-            { "name" : "opportunityUpdateDTO", "type" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO" }
+            { "name" : "id", "type" : "String", "desc" : "" },
+            { "name" : "opportunityUpdateDTO", "type" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO", "desc" : "" }
           ],
           "map" : {
             "out.id" : "param.id",
@@ -23,14 +23,17 @@
         },
         "result" : {
           "params" : [
-            { "name" : "opp", "type" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO" }
-          ]
+            { "name" : "opp", "type" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO", "desc" : "" }
+          ],
+          "map" : { }
         }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -42,30 +45,38 @@
       "type" : "RestClientCall",
       "name" : "Update Opportunity",
       "config" : {
-        "path" : "/sobjects/Opportunity/{id}",
-        "headers" : {
-          "Accept" : "*/*",
-          "X-Requested-By" : "in.opportunity"
-        },
-        "bodyObjectMapping" : {
-          "param" : "in.opportunity"
-        },
-        "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
-        "clientErrorCode" : "ivy:error:rest:client",
         "method" : "PATCH",
-        "statusErrorCode" : "ivy:error:rest:client",
-        "bodyObjectType" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO",
-        "templateParams" : {
-          "subdomain" : "",
-          "id" : "in.id"
+        "target" : {
+          "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+          "path" : "/sobjects/Opportunity/{id}",
+          "templateParams" : {
+            "subdomain" : "",
+            "id" : "in.id"
+          },
+          "headers" : {
+            "X-Requested-By" : "in.opportunity"
+          }
         },
-        "resultType" : "com.fasterxml.jackson.databind.JsonNode",
-        "bodyInputType" : "ENTITY"
+        "body" : {
+          "entity" : {
+            "type" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO",
+            "map" : {
+              "param" : "in.opportunity"
+            }
+          }
+        },
+        "response" : {
+          "entity" : {
+            "type" : "com.fasterxml.jackson.databind.JsonNode"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 288, "y" : 64 },
         "icon" : "res:/webContent/icons/Salesforce-logo.jpg"
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }
