@@ -1,4 +1,0 @@
-GetAccountServiceData #class
-com.axonivy.connector.salesforce #namespace
-id String #field
-acc com.axonivy.connector.salesforce.model.Account #field

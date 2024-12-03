@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ListOppsData",
+  "namespace" : "salesforce.connector.demo.ListOpps",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "bean",
+    "type" : "com.axonivy.connector.salesforce.ListOppsBean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "id",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
