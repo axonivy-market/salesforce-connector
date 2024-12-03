@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18C0022FCA6F8CC0",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "call(String)",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "query", "type" : "String" }
+            { "name" : "query", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.query" : "param.query"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "jsonNode", "type" : "com.fasterxml.jackson.databind.JsonNode" }
+            { "name" : "jsonNode", "type" : "com.fasterxml.jackson.databind.JsonNode", "desc" : "" }
           ],
           "map" : {
             "result.jsonNode" : "in.jsonNode"
@@ -31,7 +31,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -43,26 +45,32 @@
       "type" : "RestClientCall",
       "name" : "Query API",
       "config" : {
-        "path" : "/query",
-        "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
-        "clientErrorCode" : "ivy:error:rest:client",
-        "queryParams" : {
-          "q" : "in.query"
+        "target" : {
+          "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+          "path" : "/query",
+          "templateParams" : {
+            "subdomain" : "",
+            "ivy.var.salesforce-connector.auth.url" : ""
+          },
+          "queryParams" : {
+            "q" : "in.query"
+          }
         },
-        "statusErrorCode" : "ivy:error:rest:client",
-        "responseMapping" : {
-          "out.jsonNode" : "result"
-        },
-        "templateParams" : {
-          "subdomain" : "",
-          "ivy.var.salesforce-connector.auth.url" : ""
-        },
-        "resultType" : "com.fasterxml.jackson.databind.JsonNode"
+        "response" : {
+          "entity" : {
+            "type" : "com.fasterxml.jackson.databind.JsonNode",
+            "map" : {
+              "out.jsonNode" : "result"
+            }
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 264, "y" : 64 },
         "icon" : "res:/webContent/icons/Salesforce-logo.jpg"
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }
