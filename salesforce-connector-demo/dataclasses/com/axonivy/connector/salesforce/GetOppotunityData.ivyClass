@@ -1,4 +1,0 @@
-GetOppotunityData #class
-com.axonivy.connector.salesforce #namespace
-opp com.axonivy.connector.salesforce.model.Opportunity #field
-id String #field
