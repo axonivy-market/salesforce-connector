@@ -1,4 +1,0 @@
-ListAccountServiceData #class
-com.axonivy.connector.salesforce #namespace
-query String #field
-accs java.util.List<com.axonivy.connector.salesforce.model.Account> #field

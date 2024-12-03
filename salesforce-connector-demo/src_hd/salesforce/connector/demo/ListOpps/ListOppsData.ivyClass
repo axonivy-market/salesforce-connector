@@ -1,6 +1,0 @@
-ListOppsData #class
-salesforce.connector.demo.ListOpps #namespace
-bean com.axonivy.connector.salesforce.ListOppsBean #field
-bean PERSISTENT #fieldModifier
-id String #field
-id PERSISTENT #fieldModifier

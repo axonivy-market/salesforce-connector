@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18BA91A960F33F4A",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "call(String)",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "id", "type" : "String" }
+            { "name" : "id", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.id" : "param.id"
@@ -23,7 +23,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -35,25 +37,30 @@
       "type" : "RestClientCall",
       "name" : "Delete opportunity",
       "config" : {
-        "path" : "/sobjects/Opportunity/{id}",
-        "headers" : {
-          "Accept" : "*/*",
-          "X-Requested-By" : "in.id"
-        },
-        "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
-        "clientErrorCode" : "ivy:error:rest:client",
         "method" : "DELETE",
-        "statusErrorCode" : "ivy:error:rest:client",
-        "templateParams" : {
-          "subdomain" : "",
-          "id" : "in.id"
+        "target" : {
+          "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+          "path" : "/sobjects/Opportunity/{id}",
+          "templateParams" : {
+            "subdomain" : "",
+            "id" : "in.id"
+          },
+          "headers" : {
+            "X-Requested-By" : "in.id"
+          }
         },
-        "resultType" : "com.fasterxml.jackson.databind.JsonNode"
+        "response" : {
+          "entity" : {
+            "type" : "com.fasterxml.jackson.databind.JsonNode"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
         "icon" : "res:/webContent/icons/Salesforce-logo.jpg"
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }
