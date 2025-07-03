@@ -38,7 +38,6 @@
       <groupId>com.axonivy.ivy.test</groupId>
       <artifactId>unit-tester</artifactId>
       <version>${tester.version}</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
@@ -49,6 +48,18 @@
         <artifactId>project-build-plugin</artifactId>
         <version>${project.build.plugin.version}</version>
         <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <configuration>
+          <systemPropertyVariables>
+            <url>${salesforce.url}</url>
+            <subdomain>${salesforce.subdomain}</subdomain>
+            <clientid>${salesforce.clientid}</clientid>
+            <clientsecret>${salesforce.clientsecret}</clientsecret>
+          </systemPropertyVariables>
+        </configuration>
       </plugin>
     </plugins>
   </build>
