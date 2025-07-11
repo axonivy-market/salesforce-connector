@@ -50,7 +50,7 @@
           "path" : "/query",
           "templateParams" : {
             "subdomain" : "",
-            "ivy.var.salesforce-connector.auth.url" : ""
+            "ivy.var.salesforceConnector.auth.url" : ""
           },
           "queryParams" : {
             "q" : "in.query"

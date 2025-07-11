@@ -12,6 +12,6 @@ public class BaseTest {
 	void beforeEach(AppFixture fixture) {
 		// Disable OAuth feature for mock rest service
 		fixture.config("RestClients.SalesforceAPI.Features", "ch.ivyteam.ivy.rest.client.mapper.JsonFeature");
-		fixture.var("salesforce-connector.auth.url", "{ivy.app.baseurl}/api/salesforceMock");
+		fixture.var("salesforceConnector.auth.url", "{ivy.app.baseurl}/api/salesforceMock");
 	}
 }
