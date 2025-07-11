@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "18C0022FCA6F8CC0",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -50,7 +50,7 @@
           "path" : "/query",
           "templateParams" : {
             "subdomain" : "",
-            "ivy.var.salesforce-connector.auth.url" : ""
+            "ivy.var.salesforceConnector.auth.url" : ""
           },
           "queryParams" : {
             "q" : "in.query"
