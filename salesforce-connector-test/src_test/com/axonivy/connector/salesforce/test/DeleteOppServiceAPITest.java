@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.connector.salesforce.utils.SalesforceUtils;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
@@ -14,10 +16,16 @@ import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
+import ch.ivyteam.ivy.environment.AppFixture;
 
 @IvyProcessTest(enableWebServer = true)
-public class DeleteOppServiceAPITest extends BaseTest {
+public class DeleteOppServiceAPITest {
 	private static final BpmProcess DELETEOPPSERVICE_PROCESS = BpmProcess.path("DeleteOppService");
+
+	@BeforeEach
+	void beforeEach(AppFixture fixture) {
+		SalesforceUtils.setUpConfigForMockServer(fixture);
+	}
 
 	@Test
 	void deleteOpportunity(BpmClient bpmClient)
