@@ -137,12 +137,14 @@ This connector:
   
   | Variable name                              | Note                                          |Example                                                                               |
   |--------------------------------------------|-----------------------------------------------|--------------------------------------------------------------------------------------|
-  |salesforce-connector.auth.subdomain         |The domain that Salesforce provides to consumers for authentication         |axonactive3-dev-ed.develop                                                            |
-  |salesforce-connector.auth.clientId          |Consumer Id                                    |3MVG95mg0lk4bathQF4Z_F1GcZZPr8ztvo29c53HhwOXnCKBkP8LkxHnb5KlydXj3Oomw0VHsY |
-  |salesforce-connector.auth.clientSecret      |Consumer Secret                                |56C6CA448B49032828FE4C4DF16D1AF4804B8CC734E066B255A5B31A                     |
-  |salesforce-connector.auth.useAppPermissions |OAuth2 Grantype                                |true (client_credentials)                                                             |
-  |salesforce-connector.auth.url               |Salesforce Rest URI                            |https://axonactive3-dev-ed.develop.my.salesforce.com/services/data/v58.0              |
+  |salesforceConnector.auth.subdomain         |The domain that Salesforce provides to consumers for authentication         |axonactive3-dev-ed.develop                                                            |
+  |salesforceConnector.auth.clientId          |Consumer Id                                    |3MVG95mg0lk4bathQF4Z_F1GcZZPr8ztvo29c53HhwOXnCKBkP8LkxHnb5KlydXj3Oomw0VHsY |
+  |salesforceConnector.auth.clientSecret      |Consumer Secret                                |56C6CA448B49032828FE4C4DF16D1AF4804B8CC734E066B255A5B31A                     |
+  |salesforceConnector.auth.useAppPermissions |OAuth2 Grantype                                |true (client_credentials)                                                             |
+  |salesforceConnector.auth.url               |Salesforce Rest URI                            |https://axonactive3-dev-ed.develop.my.salesforce.com/services/data/v58.0              |
 
+  > [!NOTE]
+  > The variable path `salesforce-connector` is renamed to `salesforceConnector` from 13.
 
 ### Resources
 [Developer](https://developer.salesforce.com/docs)
