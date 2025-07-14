@@ -8,7 +8,7 @@
 #
 Variables:
 #  myVariable: value
-  salesforce-connector:
+  salesforceConnector:
       auth:
         # Url to the Salesforce user application
         url: ''
