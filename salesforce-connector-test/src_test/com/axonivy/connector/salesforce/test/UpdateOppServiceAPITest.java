@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.connector.salesforce.model.OpportunityUpdateDTO;
+import com.axonivy.connector.salesforce.utils.SalesforceUtils;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
@@ -18,7 +19,6 @@ import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.AppFixture;
-import utils.SalesforceUtils;
 
 @IvyProcessTest(enableWebServer = true)
 public class UpdateOppServiceAPITest {
@@ -30,7 +30,8 @@ public class UpdateOppServiceAPITest {
 	}
 
 	@Test
-	void updateOpp(BpmClient bpmClient) throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
+	void updateOpp(BpmClient bpmClient)
+			throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
 		OpportunityUpdateDTO opportunity = new OpportunityUpdateDTO();
 		opportunity.setName("Test 1");
 		opportunity.setStageName("Stage Name test 1");
