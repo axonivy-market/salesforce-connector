@@ -9,7 +9,7 @@ import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-import com.axonivy.connector.salesforce.constant.SalesforceConstant;
+import com.axonivy.connector.salesforce.constant.SalesforceTestConstants;
 import com.axonivy.connector.salesforce.context.MultiEnvironmentContextProvider;
 import com.axonivy.connector.salesforce.model.Opportunity;
 import com.axonivy.connector.salesforce.utils.ConvertUtils;
@@ -31,7 +31,7 @@ public class QueryServiceAPITest extends BaseTest {
 	@TestTemplate
 	void getAllOpps(ExtensionContext context, BpmClient bpmClient)
 			throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
-		boolean isRealContext = context.getDisplayName().equals(SalesforceConstant.REAL_CALL_CONTEXT_DISPLAY_NAME);
+		boolean isRealContext = context.getDisplayName().equals(SalesforceTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
 		BpmElement startable = QUERYSERVICE_PROCESS.elementName("call(String)");
 		ExecutionResult result =
 				bpmClient.start().subProcess(startable).execute("Select FIELDS(ALL) from Opportunity LIMIT 200");

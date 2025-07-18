@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.axonivy.connector.salesforce.utils.SalesforceUtils;
+import com.axonivy.connector.salesforce.utils.SalesforceTestUtils;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
@@ -24,7 +24,7 @@ public class DeleteOppServiceAPITest {
 
 	@BeforeEach
 	void beforeEach(AppFixture fixture) {
-		SalesforceUtils.setUpConfigForMockServer(fixture);
+		SalesforceTestUtils.setUpConfigForMockServer(fixture);
 	}
 
 	@Test
