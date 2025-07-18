@@ -3,7 +3,7 @@ package com.axonivy.connector.salesforce.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-import com.axonivy.connector.salesforce.utils.SalesforceUtils;
+import com.axonivy.connector.salesforce.utils.SalesforceTestUtils;
 
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.AppFixture;
@@ -13,6 +13,6 @@ public class BaseTest {
 
 	@BeforeEach
 	void beforeEach(ExtensionContext context, AppFixture fixture) {
-		SalesforceUtils.setUpConfigForContext(context.getDisplayName(), fixture);
+		SalesforceTestUtils.setUpConfigForContext(context.getDisplayName(), fixture);
 	}
 }

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.connector.salesforce.model.OpportunityUpdateDTO;
-import com.axonivy.connector.salesforce.utils.SalesforceUtils;
+import com.axonivy.connector.salesforce.utils.SalesforceTestUtils;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
@@ -26,7 +26,7 @@ public class UpdateOppServiceAPITest {
 
 	@BeforeAll
 	static void beforeAll(AppFixture fixture) {
-		SalesforceUtils.setUpConfigForMockServer(fixture);
+		SalesforceTestUtils.setUpConfigForMockServer(fixture);
 	}
 
 	@Test
