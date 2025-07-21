@@ -10,7 +10,7 @@ import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-import com.axonivy.connector.salesforce.constant.SalesforceConstant;
+import com.axonivy.connector.salesforce.constant.SalesforceTestConstants;
 import com.axonivy.connector.salesforce.context.MultiEnvironmentContextProvider;
 import com.axonivy.connector.salesforce.model.Opportunity;
 import com.axonivy.connector.salesforce.model.OpportunityUpdateDTO;
@@ -34,7 +34,7 @@ public class AddOppServiceAPITest extends BaseTest {
 	@TestTemplate
 	void addNewOpp(ExtensionContext context, BpmClient bpmClient)
 			throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
-		boolean isRealContext = context.getDisplayName().equals(SalesforceConstant.REAL_CALL_CONTEXT_DISPLAY_NAME);
+		boolean isRealContext = context.getDisplayName().equals(SalesforceTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
 		Opportunity opportunity = new Opportunity();
 		opportunity.setName("Test 1");
 		opportunity.setStageName("Stage Name test 1");
