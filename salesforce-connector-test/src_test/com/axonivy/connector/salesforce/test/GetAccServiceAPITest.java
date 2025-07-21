@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-import com.axonivy.connector.salesforce.constant.SalesforceConstant;
+import com.axonivy.connector.salesforce.constant.SalesforceTestConstants;
 import com.axonivy.connector.salesforce.context.MultiEnvironmentContextProvider;
 import com.axonivy.connector.salesforce.model.Account;
 import com.fasterxml.jackson.core.exc.StreamReadException;
@@ -28,7 +28,7 @@ public class GetAccServiceAPITest extends BaseTest {
 	@TestTemplate
 	void getAccount(ExtensionContext context, BpmClient bpmClient)
 			throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
-		boolean isRealContext = context.getDisplayName().equals(SalesforceConstant.REAL_CALL_CONTEXT_DISPLAY_NAME);
+		boolean isRealContext = context.getDisplayName().equals(SalesforceTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
 		BpmElement startable = GETACCSERVICE_PROCESS.elementName("call(String)");
 
 		ExecutionResult result = bpmClient.start().subProcess(startable).execute("0015g00001UvqSvAAJ");
