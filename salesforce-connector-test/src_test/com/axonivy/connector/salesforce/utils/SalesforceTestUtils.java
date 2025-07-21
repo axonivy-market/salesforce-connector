@@ -1,16 +1,16 @@
 package com.axonivy.connector.salesforce.utils;
 
-import com.axonivy.connector.salesforce.constant.SalesforceConstant;
+import com.axonivy.connector.salesforce.constant.SalesforceTestConstants;
 
 import ch.ivyteam.ivy.environment.AppFixture;
 
-public class SalesforceUtils {
+public class SalesforceTestUtils {
 	public static void setUpConfigForContext(String contextName, AppFixture fixture) {
 		switch (contextName) {
-		case SalesforceConstant.REAL_CALL_CONTEXT_DISPLAY_NAME:
+		case SalesforceTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME:
 			setUpConfigForApiTest(fixture);
 			break;
-		case SalesforceConstant.MOCK_SERVER_CONTEXT_DISPLAY_NAME:
+		case SalesforceTestConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME:
 			setUpConfigForMockServer(fixture);
 			break;
 		default:
@@ -19,10 +19,10 @@ public class SalesforceUtils {
 	}
 
 	public static void setUpConfigForApiTest(AppFixture fixture) {
-		String url = System.getProperty(SalesforceConstant.URL);
-		String subDomain = System.getProperty(SalesforceConstant.SUB_DOMAIN);
-		String clientId = System.getProperty(SalesforceConstant.CLIENT_ID);
-		String clientSecret = System.getProperty(SalesforceConstant.CLIENT_SECRET);
+		String url = System.getProperty(SalesforceTestConstants.URL);
+		String subDomain = System.getProperty(SalesforceTestConstants.SUB_DOMAIN);
+		String clientId = System.getProperty(SalesforceTestConstants.CLIENT_ID);
+		String clientSecret = System.getProperty(SalesforceTestConstants.CLIENT_SECRET);
 
 		fixture.var("salesforceConnector.auth.url", url);
 		fixture.var("salesforceConnector.auth.subdomain", subDomain);
