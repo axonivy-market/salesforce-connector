@@ -1,6 +1,6 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
-  "id" : "18BEBE0550975A33",
+  "id" : "19837AD5EE631362",
   "kind" : "CALLABLE_SUB",
   "config" : {
     "data" : "com.axonivy.connector.salesforce.Data"
@@ -8,20 +8,21 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "getAllOpps()",
+      "name" : "getAllLeads()",
       "config" : {
-        "signature" : "getAllOpps",
+        "signature" : "getAllLeads",
         "result" : {
           "params" : [
-            { "name" : "opps", "type" : "java.util.List<com.axonivy.connector.salesforce.model.Opportunity>", "desc" : "" }
+            { "name" : "leads", "type" : "java.util.List<com.axonivy.connector.salesforce.model.Lead>", "desc" : "" }
           ],
           "map" : {
-            "result.opps" : "in.opps"
+            "result.leads" : "in.leads"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 }
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : 17, "y" : 33 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f2" }
@@ -40,12 +41,13 @@
         "processCall" : "QueryService:call(String)",
         "call" : {
           "map" : { },
-          "code" : "param.query = ivy.html.escape(\"Select FIELDS(STANDARD) from Opportunity LIMIT 2000\");"
+          "code" : "param.query = ivy.html.escape(\"Select FIELDS(STANDARD),productInterest__c from Lead LIMIT 2000\");"
         },
         "output" : {
           "code" : [
+            "import com.axonivy.connector.salesforce.model.Lead;",
             "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
-            "out.opps = ConvertUtils.convertToListOpportunity(result.jsonNode);"
+            "out.leads  = ConvertUtils.convertToListLead(result.jsonNode); "
           ]
         }
       },

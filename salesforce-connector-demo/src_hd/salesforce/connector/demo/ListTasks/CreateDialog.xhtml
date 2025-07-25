@@ -1,0 +1,179 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<p:dialog id="#{idName}" widgetVar="#{idName}Dialog" blockScroll="true" fitViewport="false" responsive="true" width="75%"  
+	header="Task" appendTo="@(body)" modal="true" dynamic="true"
+	resizable="false" styleClass="position-absolute">
+
+	<h:form id="#{idName}Form">
+		<div class="ui-fluid">
+			<h:panelGroup id="createGroup">
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-12 ui-lg-12">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Subject" for="subjectObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:inputText id="subjectObj" required="true"
+									value="#{data.bean.selectedTask.subject}"></p:inputText>
+							</div>
+						</div>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-4 ui-lg-4">
+									<p:outputLabel value="Activity Date" for="actDateObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-8 ui-lg-8">
+							<p:datePicker id="actDateObj" readonly="false" readonlyInput="false" disabled="false"
+									value="#{data.bean.selectedTask.activityDate}" pattern="dd.MM.yyyy "
+									required="false"></p:datePicker>
+<!-- 								<p:inputText id="" -->
+<!-- 									value="#{data.bean.selectedTask.activityDate}" disabled="true"></p:inputText> -->
+							</div>
+						</div>
+					</div>
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-4 ui-lg-4">
+								<p:outputLabel value="Completed Date" for="closeDateObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-8 ui-lg-8">
+								<p:datePicker id="closeDateObj" readonly="true" readonlyInput="true" disabled="true"
+									value="#{data.bean.selectedTask.completedDateTime}" pattern="dd.MM.yyyy HH:mm:ss"
+									required="false"></p:datePicker>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="ui-g">
+				
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-4 ui-lg-4">
+								<p:outputLabel value="Opportunity" for="accNameObj" title="#{data.bean.whatOpportunity}"/>
+							</div>
+							<div class="ui-g-12 ui-md-8 ui-lg-8">
+								<p:autoComplete id="accNameObj" value="#{data.bean.whatOpportunity}" dropdownMode="current" dropdown="true"
+									completeMethod="#{data.bean.completeOpportunity}" 
+									scrollHeight="250" >
+									
+								</p:autoComplete>
+								<p:tooltip value="#{data.bean.whatOpportunity}" for="@previous"/>
+							</div>
+							
+<!-- 							<div class="ui-g-12 ui-md-8 ui-lg-8"> -->
+<!-- 								<p:autoComplete id="accNameObj" value="#{data.bean.accountName}" dropdownMode="current" dropdown="true" -->
+<!-- 									completeMethod="#{data.bean.completeAccount}" -->
+<!-- 									scrollHeight="250" /> -->
+<!-- 							</div> -->
+						</div>
+					</div>
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-4 ui-lg-4">
+								<p:outputLabel value="High Priority" for="highprioObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-8 ui-lg-8">
+								<p:selectBooleanCheckbox id="highprioObj" disabled="true"
+									value="#{data.bean.selectedTask.isHighPriority}" ></p:selectBooleanCheckbox>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-4 ui-lg-4">
+								<p:outputLabel value="Type" for="typeObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-8 ui-lg-8">
+								<p:inputText id="typeObj" value="#{data.bean.selectedTask.taskSubtype}" disabled="true"></p:inputText>
+							</div>
+						</div>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-4 ui-lg-4">
+								<p:outputLabel value="Status" for="stageObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-8 ui-lg-8">
+								<p:selectOneMenu id="stageObj"
+									value="#{data.bean.selectedTask.status}" required="true">
+									<f:selectItem itemLabel="Not Started" itemValue="Not Started" />
+									<f:selectItem itemLabel="In Progress" itemValue="In Progress" />
+									<f:selectItem itemLabel="Deferred" itemValue="Deferred" />
+									<f:selectItem itemLabel="Completed" itemValue="Completed" />
+									
+								</p:selectOneMenu>
+							</div>
+						</div>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-4 ui-lg-4">
+								<p:outputLabel value="Priority" for="prioObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-8 ui-lg-8">
+								<p:selectOneMenu id="prioObj"
+									value="#{data.bean.selectedTask.priority}" required="true">
+									<f:selectItem itemLabel="Normal" itemValue="Normal" />
+									<f:selectItem itemLabel="High" itemValue="High" />
+									<f:selectItem itemLabel="Low" itemValue="Low" />
+									
+									
+								</p:selectOneMenu>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-12 ui-lg-12">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-12 ui-lg-12">
+								<p:outputLabel value="Description" for="descriptionObj"></p:outputLabel>
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-12 ui-lg-12">
+								<p:inputTextarea id="descriptionObj" required="false"
+									value="#{data.bean.selectedTask.description}"></p:inputTextarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h:panelGroup>
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-6" />
+						<div class="ui-g-12 ui-md-3 ui-lg-3">
+							<p:commandButton id="save" actionListener="#{logic[saveButtonMethod]}" rendered="#{not empty saveButtonMethod}"
+								update="#{p:resolveFirstComponentWithId('form', view).clientId} #{p:resolveFirstComponentWithId(idName.concat('Form'), view).clientId}"
+								oncomplete="if(args &amp;&amp; !args.validationFailed) PF('#{idName}Dialog').hide()" 
+								value="Save" icon="pi pi-time">
+							</p:commandButton>
+
+						</div>
+						<div class="ui-g-12 ui-md-3 ui-lg-3">
+							<p:commandButton id="closeOpp" styleClass="doNotDisable"
+								oncomplete="PF('#{idName}Dialog').hide()"
+								update="#{p:resolveFirstComponentWithId(idName.concat('Form'), view).clientId}"
+								value="Close" icon="pi pi-time">
+							</p:commandButton>
+						</div>
+					</div>
+				</h:panelGroup>
+			</h:panelGroup>
+		</div>
+	</h:form>
+</p:dialog>
+</html>

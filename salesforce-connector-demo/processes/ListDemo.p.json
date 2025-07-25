@@ -9,7 +9,18 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "signature" : "start"
+        "signature" : "start",
+        "request" : {
+          "name" : "List Opportunities",
+          "description" : "List all Opportunities which are accessible",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si si-rating-star-add" },
+            { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/opportunity\")%>" }
+          ]
+        },
+        "permission" : {
+          "anonymous" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -45,5 +56,109 @@
       "connect" : [
         { "id" : "f2", "to" : "f1" }
       ]
+    }, {
+      "id" : "f4",
+      "type" : "RequestStart",
+      "name" : "start tasks",
+      "config" : {
+        "signature" : "startTasks",
+        "request" : {
+          "name" : "List Tasks",
+          "description" : "List all Tasks",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si si-task-list-edit" },
+            { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/tasks\")%>" }
+          ]
+        },
+        "permission" : {
+          "anonymous" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "UserTask",
+      "name" : "List Tasks",
+      "config" : {
+        "dialog" : "salesforce.connector.demo.ListTasks:start()",
+        "task" : {
+          "name" : "Tasks",
+          "description" : "List Tasks",
+          "skipTasklist" : true
+        },
+        "case" : {
+          "name" : "Tasks",
+          "description" : "List Tasks"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 176 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "RequestStart",
+      "name" : "start leads",
+      "config" : {
+        "signature" : "startLeads",
+        "request" : {
+          "name" : "List Leads",
+          "description" : "List of all Leads",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si si-user-logout" },
+            { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/leads\")%>" }
+          ]
+        },
+        "permission" : {
+          "anonymous" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "UserTask",
+      "name" : "List Leads",
+      "config" : {
+        "dialog" : "salesforce.connector.demo.ListLeads:start()",
+        "task" : {
+          "name" : "Leads",
+          "description" : "List Leads",
+          "skipTasklist" : true
+        },
+        "case" : {
+          "name" : "Leads",
+          "description" : "List Leads"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 288 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 288 }
+      }
     } ]
 }
