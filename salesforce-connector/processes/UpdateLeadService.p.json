@@ -1,29 +1,29 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
-  "id" : "18BA90B58BA33FBC",
+  "id" : "19837D0288D90E63",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.connector.salesforce.UpdateServiceData"
+    "data" : "com.axonivy.connector.salesforce.LeadData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(String,Opportunity)",
+      "name" : "call(String,Lead)",
       "config" : {
         "signature" : "call",
         "input" : {
           "params" : [
             { "name" : "id", "type" : "String", "desc" : "" },
-            { "name" : "opportunity", "type" : "com.axonivy.connector.salesforce.model.Opportunity", "desc" : "" }
+            { "name" : "lead", "type" : "com.axonivy.connector.salesforce.model.Lead", "desc" : "" }
           ],
           "map" : {
             "out.id" : "param.id",
-            "out.opportunity" : "param.opportunity"
+            "out.lead" : "param.lead"
           }
         },
         "result" : {
           "params" : [
-            { "name" : "opp", "type" : "com.axonivy.connector.salesforce.model.Opportunity", "desc" : "" }
+            { "name" : "task", "type" : "com.axonivy.connector.salesforce.model.Task", "desc" : "" }
           ],
           "map" : { }
         }
@@ -43,55 +43,51 @@
     }, {
       "id" : "f3",
       "type" : "RestClientCall",
-      "name" : "Update Opportunity",
+      "name" : "Update Lead",
       "config" : {
         "method" : "PATCH",
         "target" : {
           "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
-          "path" : "/sobjects/Opportunity/{id}",
+          "path" : "/sobjects/Lead/{id}",
           "templateParams" : {
-            "subdomain" : "",
-            "id" : "in.id"
+            "ivy.var.salesforce-connector.auth.url" : "",
+            "id" : "in.id",
+            "subdomain" : ""
           },
           "headers" : {
-            "X-Requested-By" : "in.opportunity"
+            "X-Requested-By" : "in.lead"
           }
         },
         "body" : {
           "entity" : {
-            "type" : "com.axonivy.connector.salesforce.model.Opportunity",
+            "type" : "com.axonivy.connector.salesforce.model.Lead",
             "code" : [
               "import org.apache.commons.beanutils.BeanUtils;",
-              "BeanUtils.copyProperties(param,in.opportunity);",
-              "param.id =null;//cannot use id during update ",
-              "param.lastModifiedDate=null;",
-              "param.lastCloseDateChangedHistoryId=null;",
-              "param.hasOpportunityLineItem=null;",
-              "param.fiscalYear=null;",
-              "param.forecastCategory=null;",
+              "BeanUtils.copyProperties(param, in.lead);",
               "",
+              "param.address=null;",
               "param.lastReferencedDate=null;",
-              "param.isClosed=null;",
-              "param.hasOpenActivity=null;",
-              "param.lastAmountChangedHistoryId=null;",
-              "param.expectedRevenue=null;",
-              "param.createdById=null;",
-              "param.isWon=null;",
-              "param.pushCount=null;",
+              "param.name=null;",
+              "param.photoUrl=null;",
               "param.isDeleted=null;",
-              "param.fiscalQuarter=null;",
+              "param.isConverted=null;",
               "param.lastViewedDate=null;",
-              "param.fiscal=null;",
+              "param.lastModifiedDate=null;",
               "param.systemModstamp=null;",
-              "param. createdDate=null;",
-              "param.hasOverdueTask=null;",
-              "param.lastModifiedById=null;"
+              "param.createdById=null;",
+              "param.createdDate=null;",
+              "param.lastModifiedById=null;",
+              "param.id=null;//all these props are not setable"
             ]
           }
         },
         "response" : {
           "entity" : {
-            "type" : "com.fasterxml.jackson.databind.JsonNode"
+            "type" : "com.fasterxml.jackson.databind.JsonNode",
+            "code" : [
+              "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
+              "ivy.log.debug(\"update task response {0}\",response.toString());"
+            ]
           }
         }
       },

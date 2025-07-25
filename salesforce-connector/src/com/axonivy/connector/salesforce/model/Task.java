@@ -3,6 +3,7 @@ package com.axonivy.connector.salesforce.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,59 +14,86 @@ public class Task implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@JsonProperty("Id")
-	private String id;
-
-	@JsonProperty("WhatId")
-	private String whatId;
-
-	@JsonProperty("Subject")
-	private String subject;
-
-	@JsonProperty("ActivityDate")
-	private Date activityDate;
-
-	@JsonProperty("Status")
-	private String status;
-
-	@JsonProperty("Priority")
-	private String priority;
-
-	@JsonProperty("IsHighPriority")
-	private Boolean isHighPriority;
-
-	@JsonProperty("OwnerId")
-	private String ownerId;
-
-	@JsonProperty("AccountId")
-	private String accountId;
-
-	@JsonProperty("Description")
-	private String description;
-
-	@JsonProperty("IsDeleted")
-	private Boolean isDeleted;
-
-	@JsonProperty("IsClosed")
-	private Boolean isClosed;
-
-	@JsonProperty("IsArchived")
-	private Boolean isArchived;
-
-	@JsonProperty("TaskSubtype")
-	private String taskSubtype;
-
-	@JsonProperty("CompletedDateTime")
-	private Date completedDateTime;
-
-	@JsonProperty("IsReminderSet")
-	private Boolean isReminderSet;
-
-	@JsonProperty("IsRecurrence")
-	private Boolean isRecurrence;
-
-	@JsonProperty("Name")
-	private String name;
+	    @JsonProperty("Id") 
+	    private String id;
+	    @JsonProperty("WhoId") 
+	    private String whoId;
+	    @JsonProperty("WhatId") 
+	    private String whatId;
+	    @JsonProperty("Subject") 
+	    private String subject;
+	    @JsonProperty("ActivityDate") 
+	    private Date activityDate;
+	    @JsonProperty("Status") 
+	    private String status;
+	    @JsonProperty("Priority") 
+	    private String priority;
+	    @JsonProperty("IsHighPriority") 
+	    private Boolean isHighPriority;
+	    @JsonProperty("OwnerId") 
+	    private String ownerId;
+	    @JsonProperty("Description") 
+	    private String description;
+	    @JsonProperty("IsDeleted") 
+	    private Boolean isDeleted;
+	    @JsonProperty("AccountId") 
+	    private String accountId;
+	    @JsonProperty("IsClosed") 
+	    private Boolean isClosed;
+	    @JsonProperty("CreatedDate") 
+	    private Date createdDate;
+	    @JsonProperty("CreatedById") 
+	    private String createdById;
+	    @JsonProperty("LastModifiedDate") 
+	    private Date lastModifiedDate;
+	    @JsonProperty("LastModifiedById") 
+	    private String lastModifiedById;
+	    @JsonProperty("SystemModstamp") 
+	    private Date systemModstamp;
+	    @JsonProperty("IsArchived") 
+	    private Boolean isArchived;
+	    @JsonProperty("CallDurationInSeconds") 
+	    private int callDurationInSeconds;
+	    @JsonProperty("CallType") 
+	    private String callType;
+	    @JsonProperty("CallDisposition") 
+	    private String callDisposition;
+	    @JsonProperty("CallObject") 
+	    private String callObject;
+	    @JsonProperty("ReminderDateTime") 
+	    private Date reminderDateTime;
+	    @JsonProperty("IsReminderSet") 
+	    private Boolean isReminderSet;
+	    @JsonProperty("RecurrenceActivityId") 
+	    private String recurrenceActivityId;
+	    @JsonProperty("IsRecurrence") 
+	    private Boolean isRecurrence;
+	    @JsonProperty("RecurrenceStartDateOnly") 
+	    private Boolean recurrenceStartDateOnly;
+	    @JsonProperty("RecurrenceEndDateOnly") 
+	    private Boolean recurrenceEndDateOnly;
+	    @JsonProperty("RecurrenceTimeZoneSidKey") 
+	    private String recurrenceTimeZoneSidKey;
+	    @JsonProperty("RecurrenceType") 
+	    private String recurrenceType;
+	    @JsonProperty("RecurrenceInterval") 
+	    private String recurrenceInterval;
+	    @JsonProperty("RecurrenceDayOfWeekMask") 
+	    private String recurrenceDayOfWeekMask;
+	    @JsonProperty("RecurrenceDayOfMonth") 
+	    private String recurrenceDayOfMonth;
+	    @JsonProperty("RecurrenceInstance") 
+	    private String recurrenceInstance;
+	    @JsonProperty("RecurrenceMonthOfYear") 
+	    private String recurrenceMonthOfYear;
+	    @JsonProperty("RecurrenceRegeneratedType") 
+	    private String recurrenceRegeneratedType;
+	    @JsonProperty("TaskSubtype") 
+	    private String taskSubtype;
+	    @JsonProperty("CompletedDateTime") 
+	    private Date completedDateTime;
+	    @JsonIgnore
+	    private String accName;
 
 	public String getId() {
 		return id;
@@ -115,14 +143,6 @@ public class Task implements Serializable {
 		this.priority = priority;
 	}
 
-	public Boolean isHighPriority() {
-		return isHighPriority;
-	}
-
-	public void setHighPriority(Boolean isHighPriority) {
-		this.isHighPriority = isHighPriority;
-	}
-
 	public String getOwnerId() {
 		return ownerId;
 	}
@@ -139,21 +159,6 @@ public class Task implements Serializable {
 		this.description = description;
 	}
 
-	public Boolean isClosed() {
-		return isClosed;
-	}
-
-	public void setClosed(Boolean isClosed) {
-		this.isClosed = isClosed;
-	}
-
-	public Boolean isArchived() {
-		return isArchived;
-	}
-
-	public void setArchived(Boolean isArchived) {
-		this.isArchived = isArchived;
-	}
 
 	public String getTaskSubtype() {
 		return taskSubtype;
@@ -227,12 +232,189 @@ public class Task implements Serializable {
 		this.isRecurrence = isRecurrence;
 	}
 
-	public String getName() {
-		return name;
+	public String getAccName() {
+		return accName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAccName(String accountName) {
+		this.accName = accountName;
 	}
+
+	public String getWhoId() {
+		return whoId;
+	}
+
+	public void setWhoId(String whoId) {
+		this.whoId = whoId;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getCreatedById() {
+		return createdById;
+	}
+
+	public void setCreatedById(String createdById) {
+		this.createdById = createdById;
+	}
+
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public String getLastModifiedById() {
+		return lastModifiedById;
+	}
+
+	public void setLastModifiedById(String lastModifiedById) {
+		this.lastModifiedById = lastModifiedById;
+	}
+
+	public Date getSystemModstamp() {
+		return systemModstamp;
+	}
+
+	public void setSystemModstamp(Date systemModstamp) {
+		this.systemModstamp = systemModstamp;
+	}
+
+	public int getCallDurationInSeconds() {
+		return callDurationInSeconds;
+	}
+
+	public void setCallDurationInSeconds(int callDurationInSeconds) {
+		this.callDurationInSeconds = callDurationInSeconds;
+	}
+
+	public String getCallType() {
+		return callType;
+	}
+
+	public void setCallType(String callType) {
+		this.callType = callType;
+	}
+
+	public String getCallDisposition() {
+		return callDisposition;
+	}
+
+	public void setCallDisposition(String callDisposition) {
+		this.callDisposition = callDisposition;
+	}
+
+	public String getCallObject() {
+		return callObject;
+	}
+
+	public void setCallObject(String callObject) {
+		this.callObject = callObject;
+	}
+
+	public Date getReminderDateTime() {
+		return reminderDateTime;
+	}
+
+	public void setReminderDateTime(Date reminderDateTime) {
+		this.reminderDateTime = reminderDateTime;
+	}
+
+	public String getRecurrenceActivityId() {
+		return recurrenceActivityId;
+	}
+
+	public void setRecurrenceActivityId(String recurrenceActivityId) {
+		this.recurrenceActivityId = recurrenceActivityId;
+	}
+
+	public Boolean getRecurrenceStartDateOnly() {
+		return recurrenceStartDateOnly;
+	}
+
+	public void setRecurrenceStartDateOnly(Boolean recurrenceStartDateOnly) {
+		this.recurrenceStartDateOnly = recurrenceStartDateOnly;
+	}
+
+	public Boolean getRecurrenceEndDateOnly() {
+		return recurrenceEndDateOnly;
+	}
+
+	public void setRecurrenceEndDateOnly(Boolean recurrenceEndDateOnly) {
+		this.recurrenceEndDateOnly = recurrenceEndDateOnly;
+	}
+
+	public String getRecurrenceTimeZoneSidKey() {
+		return recurrenceTimeZoneSidKey;
+	}
+
+	public void setRecurrenceTimeZoneSidKey(String recurrenceTimeZoneSidKey) {
+		this.recurrenceTimeZoneSidKey = recurrenceTimeZoneSidKey;
+	}
+
+	public String getRecurrenceType() {
+		return recurrenceType;
+	}
+
+	public void setRecurrenceType(String recurrenceType) {
+		this.recurrenceType = recurrenceType;
+	}
+
+	public String getRecurrenceInterval() {
+		return recurrenceInterval;
+	}
+
+	public void setRecurrenceInterval(String recurrenceInterval) {
+		this.recurrenceInterval = recurrenceInterval;
+	}
+
+	public String getRecurrenceDayOfWeekMask() {
+		return recurrenceDayOfWeekMask;
+	}
+
+	public void setRecurrenceDayOfWeekMask(String recurrenceDayOfWeekMask) {
+		this.recurrenceDayOfWeekMask = recurrenceDayOfWeekMask;
+	}
+
+	public String getRecurrenceDayOfMonth() {
+		return recurrenceDayOfMonth;
+	}
+
+	public void setRecurrenceDayOfMonth(String recurrenceDayOfMonth) {
+		this.recurrenceDayOfMonth = recurrenceDayOfMonth;
+	}
+
+	public String getRecurrenceInstance() {
+		return recurrenceInstance;
+	}
+
+	public void setRecurrenceInstance(String recurrenceInstance) {
+		this.recurrenceInstance = recurrenceInstance;
+	}
+
+	public String getRecurrenceMonthOfYear() {
+		return recurrenceMonthOfYear;
+	}
+
+	public void setRecurrenceMonthOfYear(String recurrenceMonthOfYear) {
+		this.recurrenceMonthOfYear = recurrenceMonthOfYear;
+	}
+
+	public String getRecurrenceRegeneratedType() {
+		return recurrenceRegeneratedType;
+	}
+
+	public void setRecurrenceRegeneratedType(String recurrenceRegeneratedType) {
+		this.recurrenceRegeneratedType = recurrenceRegeneratedType;
+	}
+
 
 }

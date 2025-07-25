@@ -1,30 +1,30 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
-  "id" : "18BA88DC14AB7EE5",
+  "id" : "19837CFBEE7A87DB",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.connector.salesforce.AddServiceData"
+    "data" : "com.axonivy.connector.salesforce.LeadData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(Opportunity)",
+      "name" : "call(Lead)",
       "config" : {
         "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "opportunity", "type" : "com.axonivy.connector.salesforce.model.Opportunity", "desc" : "" }
+            { "name" : "lead", "type" : "com.axonivy.connector.salesforce.model.Lead", "desc" : "" }
           ],
           "map" : {
-            "out.opportunity" : "param.opportunity"
+            "out.lead" : "param.lead"
           }
         },
         "result" : {
           "params" : [
-            { "name" : "opp", "type" : "com.axonivy.connector.salesforce.response.CreateOppResponse", "desc" : "" }
+            { "name" : "idResponse", "type" : "com.axonivy.connector.salesforce.response.IdResponse", "desc" : "" }
           ],
           "map" : {
-            "result.opp" : "in.oppResponse"
+            "result.idResponse" : "in.response"
           }
         }
       },
@@ -43,43 +43,36 @@
     }, {
       "id" : "f2",
       "type" : "RestClientCall",
-      "name" : "Create Opportunity",
+      "name" : "Create Lead",
       "config" : {
         "method" : "POST",
         "target" : {
           "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
-          "path" : "/sobjects/Opportunity",
+          "path" : "/sobjects/Lead",
           "headers" : {
-            "X-Requested-By" : "in.opportunity"
+            "X-Requested-By" : "in.lead"
           }
         },
         "body" : {
           "entity" : {
-            "type" : "com.axonivy.connector.salesforce.model.Opportunity",
+            "type" : "com.axonivy.connector.salesforce.model.Lead",
             "code" : [
               "import org.apache.commons.beanutils.BeanUtils;",
-              "BeanUtils.copyProperties(param,in.opportunity);",
-              "param.lastModifiedDate=null;",
-              "param.lastCloseDateChangedHistoryId=null;",
-              "param.hasOpportunityLineItem=null;",
-              "param.fiscalYear=null;",
-              "param.forecastCategory=null;",
+              "BeanUtils.copyProperties(param, in.lead);",
+              "",
+              "param.address=null;",
               "param.lastReferencedDate=null;",
-              "param.isClosed=null;",
-              "param.hasOpenActivity=null;",
-              "param.lastAmountChangedHistoryId=null;",
-              "//param.expectedRevenue=null;",
-              "param.createdById=null;",
-              "param.isWon=null;",
-              "param.pushCount=null;",
+              "//param.name=null;",
+              "param.photoUrl=null;",
               "param.isDeleted=null;",
-              "param.fiscalQuarter=null;",
+              "param.isConverted=null;",
               "param.lastViewedDate=null;",
-              "param.fiscal=null;",
+              "param.lastModifiedDate=null;",
               "param.systemModstamp=null;",
-              "param. createdDate=null;",
-              "param.hasOverdueTask=null;",
-              "param.lastModifiedById=null;"
+              "param.createdById=null;",
+              "param.createdDate=null;",
+              "param.lastModifiedById=null;",
+              "param.id=null;//all these props are not setable"
             ]
           }
         },
@@ -89,7 +82,7 @@
             "code" : [
               "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
               "",
-              "in.oppResponse = ConvertUtils.convertToOpportunityResponse(result);"
+              "in.response = ConvertUtils.convertToIdResponse(result);"
             ]
           }
         }

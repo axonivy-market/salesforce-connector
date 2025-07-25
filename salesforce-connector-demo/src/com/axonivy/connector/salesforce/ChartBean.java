@@ -16,21 +16,19 @@ import org.primefaces.model.charts.optionconfig.legend.Legend;
 import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
 import org.primefaces.model.charts.optionconfig.title.Title;
 
-import com.axonivy.connector.salesforce.model.Opportunity;
-
-import com.axonivy.connector.salesforce.dto.OpportunityDTO;
 import com.axonivy.connector.salesforce.enums.Stage;
+import com.axonivy.connector.salesforce.model.Opportunity;
 
 public class ChartBean {
 	List<Opportunity> opportunities;
-	List<OpportunityDTO> opps;
+	//List<OpportunityDTO> opps;
 	private BarChartModel barModel;
 
 	public ChartBean() {
-		opps = new ArrayList<>();
+	//	opps = new ArrayList<>();
 		opportunities = Utils.getAllOpps();
 
-		opps = Utils.convertToOppDTO(opportunities);
+		//opps = Utils.convertToOppDTO(opportunities);
 
 		createBarChartModel();
 	}
@@ -119,7 +117,7 @@ public class ChartBean {
 	}
 
 	private int countByStage(String stageName) {
-		return opps.stream().filter(o -> o.getStage().equals(stageName)).collect(Collectors.toList()).size();
+		return opportunities.stream().filter(o -> o.getStageName().equals(stageName)).collect(Collectors.toList()).size();
 	}
 
 	public List<Opportunity> getOpportunities() {
@@ -130,13 +128,13 @@ public class ChartBean {
 		this.opportunities = opportunities;
 	}
 
-	public List<OpportunityDTO> getOpps() {
-		return opps;
-	}
-
-	public void setOpps(List<OpportunityDTO> opps) {
-		this.opps = opps;
-	}
+//	public List<OpportunityDTO> getOpps() {
+//		return opps;
+//	}
+//
+//	public void setOpps(List<OpportunityDTO> opps) {
+//		this.opps = opps;
+//	}
 
 	public BarChartModel getBarModel() {
 		return barModel;

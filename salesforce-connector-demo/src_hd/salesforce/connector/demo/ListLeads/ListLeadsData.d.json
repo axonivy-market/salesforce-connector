@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ListLeadsData",
+  "namespace" : "salesforce.connector.demo.ListLeads",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "bean",
+    "type" : "com.axonivy.connector.salesforce.ListLeadsBean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "id",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "readOnlyDetailDialog",
+    "type" : "com.axonivy.connector.salesforce.ReadOnlyModeListener",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

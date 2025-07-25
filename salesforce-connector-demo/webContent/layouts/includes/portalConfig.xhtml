@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:pa="http://primefaces.org/serenity">
+
+   <h:outputScript>
+	         //window.taskName = "Approve Investment";
+	         //window.taskIcon = "si si-bulb";
+	         window.isHideTaskName = true;
+	         //window.caseId = "123456";
+	         window.isHideCaseInfo = true;
+	         //window.currentProcessStep = 0;
+	         // Set process steps directly as Array.
+	         //window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+	         // If process steps are set in HTML dialog logic or java code, convert it to JSON format
+	         // Use this code if process steps are a java String list
+	         //window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
+	         //window.isShowAllSteps = true;
+	         //window.processChainDirection = "VERTICAL";
+	         //window.processChainShape = "LINE";
+	         window.isHideTaskAction = true;
+	         window.isWorkingOnATask = false;
+	         window.announcementInvisible = false;
+	         window.isCardFrame = true;
+	         window.viewName = null;
+     </h:outputScript>
+</ui:composition>

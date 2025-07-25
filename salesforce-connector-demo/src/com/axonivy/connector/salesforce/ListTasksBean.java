@@ -19,47 +19,61 @@ import com.axonivy.connector.salesforce.dto.ActivityDTO;
 import com.axonivy.connector.salesforce.enums.Stage;
 import com.axonivy.connector.salesforce.model.Account;
 import com.axonivy.connector.salesforce.model.Opportunity;
+import com.axonivy.connector.salesforce.model.Task;
 import com.axonivy.connector.salesforce.utils.ConvertUtils;
 
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 
-public class ListOppsBean {
-	private List<Opportunity> opportunities;
-	//private List<OpportunityDTO> opps;
-	private List<Opportunity> filterOpps;
-	private Opportunity selectedOpp;
+public class ListTasksBean {
+	private List<Task> tasks;
+	private List<Task> filterTasks;
+	private Task selectedTask;
 	private String accountName;
 	private BarChartModel barModel;
 	private String ownerId;
+	private List<Opportunity> opportunities;
+	private Opportunity selectedOpp;
 	private List<Account> accs;
 	private List<String> stages;
-	//private OpportunityUpdateDTO updateDTO;
 	private ActivityDTO activityDTO;
+	private String whatOpportunity;
 
-	public ListOppsBean() {
+	public ListTasksBean() {
 		ownerId = ConvertUtils.extractOwnerId();
+
 		getAllOpps();
+		getAllTasks();
+		getAllAccounts();
+		getListStages();
 
 	}
-
-	
-
-	public void openOpportunityDetail(String id) {
-		selectedOpp = SubProcessCall.withPath("Functional Processes/getOpportunity")
-				.withStartSignature("getOpportunity(String)").withParam("id", id).call().get("opp", Opportunity.class);
-		accountName = Utils.getAccName(selectedOpp.getAccountId());
-		getActivities();
+	public void updateTask(String id) {
+		//updateDTO = new OpportunityUpdateDTO();
+		openTaskDetail(id);
 	}
 
-	private void getActivities() {
-		activityDTO = new ActivityDTO();
-		activityDTO.setTasks(Utils.getAllTasks(selectedOpp.getId()));
-		activityDTO.setEvents(Utils.getAllEvents(selectedOpp.getId()));
+	public void openTaskDetail(String id) {
+		selectedTask = SubProcessCall.withPath("Functional Processes/getTask")
+				.withStartSignature("getTask(String)").withParam("id", id).call().get("task", Task.class);
+		accountName = Utils.getAccName(selectedTask.getAccountId());
+		whatOpportunity= Utils.getOppName(selectedTask.getWhatId());
+//		getActivities();
 	}
+
+//	private void getActivities() {
+//		activityDTO = new ActivityDTO();
+//		activityDTO.setTasks(Utils.getAllTasks(selectedOpp.getId()));
+//		activityDTO.setEvents(Utils.getAllEvents(selectedOpp.getId()));
+//	}
 
 	public void getAllOpps() {
 		opportunities = Utils.getAllOpps();
+	}
+	public void getAllTasks() {
+		tasks = Utils.getAllTasks();
+		for(Task t : tasks) {
+			t.setAccName(getOpportunityNameById(t.getWhatId()));
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -68,48 +82,18 @@ public class ListOppsBean {
 				.withStartSignature("getAllAccounts()").call().get("accs", Account.class);
 	}
 
-	public void addNewOppotunity() {
+	public void addNewTask() {
 		accountName = null;
-		selectedOpp = new Opportunity();
-		selectedOpp.setOwnerId(ownerId);
+		setSelectedTask(new Task());
+		getSelectedTask().setOwnerId(ownerId);
 		getAllAccounts();
 		getListStages();
 	}
-
-	public void updateOppotunity(String id) {
-		//updateDTO = new OpportunityUpdateDTO();
-		openOpportunityDetail(id);
-		getAllAccounts();
-		getListStages();
-	}
-
-	public void convertToUpdateDTO() throws IllegalAccessException, InvocationTargetException {
-		selectedOpp.setAccountId(getAccountIdByName(accountName));
-		//updateDTO = ConvertUtils.convertToOpportunityObjUpdate(selectedOpp);
-	}
-
-//	public void updateCurrentListAfterUpdate() {
-//		OptionalInt result = IntStream.range(0, opportunities.size())
-//				.filter(x -> selectedOpp.getId().equals(opportunities.get(x).getId())).findFirst();
-//		if (result.isPresent()) {
-//			int index = result.getAsInt();
-//			opportunities.set(index, selectedOpp);
-//		}
-//	}
 
 	public void beforeDelete(String id) {
-		selectedOpp = SubProcessCall.withPath("Functional Processes/getOpportunity")
-				.withStartSignature("getOpportunity(String)").withParam("id", id).call().get("opp", Opportunity.class);
+		setSelectedTask(SubProcessCall.withPath("Functional Processes/getTask")
+				.withStartSignature("getTask(String)").withParam("id", id).call().get("task", Task.class));
 	}
-
-//	public void updateCurrentListAfterDelete() {
-//		OptionalInt result = IntStream.range(0, opportunities.size())
-//				.filter(x -> selectedOpp.getId().equals(opportunities.get(x).getId())).findFirst();
-//		if (result.isPresent()) {
-//			int index = result.getAsInt();
-//			opportunities.remove(index);
-//		}
-//	}
 
 	private void getListStages() {
 		stages = Arrays.stream(Stage.values()).map(e -> e.getLabel()).collect(Collectors.toList());
@@ -127,6 +111,19 @@ public class ListOppsBean {
 				.collect(Collectors.toList());
 	}
 
+	
+	public List<String> completeOpportunity(String query) {
+		String queryLowerCase = query.toLowerCase();
+		List<String> opportunityList = new ArrayList<>();
+		List<Opportunity> oppDropdown = opportunities;
+		for (Opportunity opp : oppDropdown) {
+			opportunityList.add(opp.getName());
+		}
+
+		return opportunityList.stream().filter(t -> t.toLowerCase().startsWith(queryLowerCase))
+				.collect(Collectors.toList());
+	}
+
 	public String getAccountIdByName(String name) {
 		String accId = null;
 		Account acc = accs.stream().filter(t -> t.getName().equals(name)).findFirst().orElse(null);
@@ -135,10 +132,33 @@ public class ListOppsBean {
 		return accId;
 	}
 
+	public String getOpportunityIdByName(String name) {
+		String oppId = null;
+		Opportunity opp = opportunities.stream().filter(t -> t.getName().equals(name)).findFirst().orElse(null);
+		if (opp != null)
+			oppId = opp.getId();
+		return oppId;
+	}
+
+	public String getOpportunityNameById(String id) {
+		if(id!=null&&!id.isBlank()) {
+		String oppName = null;
+		Opportunity opp = opportunities.stream().filter(t -> t.getId().equals(id)).findFirst().orElse(null);
+		if (opp != null)
+			oppName = opp.getName();
+		return oppName;
+		}else { return "";}				
+				
+	}
+
 	public void reset() {
-		selectedOpp = new Opportunity();
+		setSelectedTask(new Task());
 		accountName = null;
+		whatOpportunity=null;
 		getAllOpps();
+		getAllTasks();
+		getAllAccounts();
+
 	}
 
 	public boolean globalFilterFunction(Object value, Object filter, Locale locale) {
@@ -147,15 +167,16 @@ public class ListOppsBean {
 			return true;
 		}
 
-		Opportunity opp = (Opportunity) value;
-		boolean containsText = opp.getName()!=null&&opp.getName().toLowerCase().contains(filterText)
-				|| opp.getAccName()!=null&&opp.getAccName().toLowerCase().contains(filterText)
-				|| opp.getStageName()!=null&&opp.getStageName().toLowerCase().contains(filterText)
-				|| opp.getCloseDate()!=null&&opp.getCloseDate().toString().toLowerCase().contains(filterText);
+		Task task = (Task) value;
+		boolean containsText = task.getAccountId()!=null&&task.getAccountId().toLowerCase().contains(filterText)
+				|| task.getDescription()!=null&&task.getDescription().toLowerCase().contains(filterText)
+				|| task.getActivityDate()!=null&&task.getActivityDate().toInstant().toString().contains(filterText)
+				|| task.getSubject()!=null&&task.getSubject().toLowerCase().contains(filterText)
+				|| task.getTaskSubtype()!=null&&task.getTaskSubtype().toString().toLowerCase().contains(filterText);
 		if(!containsText) {
 			Map<String, String> allProps ;
 			try {
-				allProps = BeanUtils.describe(opp);
+				allProps = BeanUtils.describe(task);
 			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 				e.printStackTrace();
 				allProps = new HashMap<>();
@@ -182,7 +203,7 @@ public class ListOppsBean {
 //	public List<OpportunityDTO> getOpps() {
 //		return opps;
 //	}
-
+//
 //	public void setOpps(List<OpportunityDTO> opps) {
 //		this.opps = opps;
 //	}
@@ -239,12 +260,12 @@ public class ListOppsBean {
 //		this.updateDTO = updateDTO;
 //	}
 
-	public List<Opportunity> getFilterOpps() {
-		return filterOpps;
+	public List<Task> getFilterTasks() {
+		return filterTasks;
 	}
 
-	public void setFilterOpps(List<Opportunity> filterOpps) {
-		this.filterOpps = filterOpps;
+	public void setFilterTasks(List<Task> filterTasks) {
+		this.filterTasks = filterTasks;
 	}
 
 	public ActivityDTO getActivityDTO() {
@@ -253,6 +274,30 @@ public class ListOppsBean {
 
 	public void setActivityDTO(ActivityDTO activityDTO) {
 		this.activityDTO = activityDTO;
+	}
+
+	public Task getSelectedTask() {
+		return selectedTask;
+	}
+
+	public void setSelectedTask(Task selectedTask) {
+		this.selectedTask = selectedTask;
+	}
+
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public String getWhatOpportunity() {
+		return whatOpportunity;
+	}
+
+	public void setWhatOpportunity(String whatOpportunity) {
+		this.whatOpportunity = whatOpportunity;
 	}
 
 }

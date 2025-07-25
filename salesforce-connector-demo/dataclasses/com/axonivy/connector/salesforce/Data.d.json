@@ -16,5 +16,11 @@
   }, {
     "name" : "accs",
     "type" : "java.util.List<com.axonivy.connector.salesforce.model.Account>"
+  }, {
+    "name" : "tasks",
+    "type" : "List<com.axonivy.connector.salesforce.model.Task>"
+  }, {
+    "name" : "leads",
+    "type" : "List<com.axonivy.connector.salesforce.model.Lead>"
   } ]
 }

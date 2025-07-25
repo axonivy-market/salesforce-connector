@@ -7,4 +7,14 @@
 # '<project>/Config/_<environment>/variables.yaml
 #
 Variables:
-#  myVariable: value
+ salesforce-connector:
+    auth:
+      # Url to the Salesforce user application
+      url: https://axonivy-dev-ed.develop.my.salesforce.com/services/data/v64.0
+      # Subdomain of the User application
+      subdomain: axonivy-dev-ed.develop
+      # Consumer Id to authentication
+      clientId: 3MVG9YFqzc_KnL.xEifERAJJDMXI_ZJebmFfyso6.35zYxYNYesOGnT5DsEEHvUSKLf0R_uchHqJLodv2mk67
+      # Consumer Secret to authentication
+      # GrantType
+      useAppPermissions: "true"

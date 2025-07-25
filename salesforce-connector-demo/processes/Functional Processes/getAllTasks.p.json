@@ -1,6 +1,6 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
-  "id" : "18BEBE0550975A33",
+  "id" : "19833D212D7AF73F",
   "kind" : "CALLABLE_SUB",
   "config" : {
     "data" : "com.axonivy.connector.salesforce.Data"
@@ -8,15 +8,15 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "getAllOpps()",
+      "name" : "getAllTasks()",
       "config" : {
-        "signature" : "getAllOpps",
+        "signature" : "getAllTasks",
         "result" : {
           "params" : [
-            { "name" : "opps", "type" : "java.util.List<com.axonivy.connector.salesforce.model.Opportunity>", "desc" : "" }
+            { "name" : "tasks", "type" : "java.util.List<com.axonivy.connector.salesforce.model.Task>", "desc" : "" }
           ],
           "map" : {
-            "result.opps" : "in.opps"
+            "result.tasks" : "in.tasks"
           }
         }
       },
@@ -40,12 +40,12 @@
         "processCall" : "QueryService:call(String)",
         "call" : {
           "map" : { },
-          "code" : "param.query = ivy.html.escape(\"Select FIELDS(STANDARD) from Opportunity LIMIT 2000\");"
+          "code" : "param.query = ivy.html.escape(\"Select FIELDS(STANDARD) from Task LIMIT 2000\");"
         },
         "output" : {
           "code" : [
             "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
-            "out.opps = ConvertUtils.convertToListOpportunity(result.jsonNode);"
+            "out.tasks  = ConvertUtils.convertToListTask(result.jsonNode);"
           ]
         }
       },

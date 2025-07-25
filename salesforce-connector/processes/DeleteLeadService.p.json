@@ -1,0 +1,66 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19837CFEEC07120B",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.DeleteServiceData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(String)",
+      "config" : {
+        "signature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "id", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.id" : "param.id"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RestClientCall",
+      "name" : "Delete lead",
+      "config" : {
+        "method" : "DELETE",
+        "target" : {
+          "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+          "path" : "/sobjects/Lead/{id}",
+          "templateParams" : {
+            "subdomain" : "",
+            "id" : "in.id"
+          },
+          "headers" : {
+            "X-Requested-By" : "in.id"
+          }
+        },
+        "response" : {
+          "entity" : {
+            "type" : "com.fasterxml.jackson.databind.JsonNode"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "icon" : "res:/webContent/icons/Salesforce-logo.jpg"
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    } ]
+}

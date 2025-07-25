@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<userConfig/>
+<userConfig>
+    <user>
+        <username>Developer</username>
+        <password>Developer</password>
+        <fullName>Dev user</fullName>
+        <emailAddress>developer@test.com</emailAddress>
+        <additionalProperty>
+            <name>SalesForceOwnerId</name>
+            <value>005d2000000lFTRAA2</value>
+        </additionalProperty>
+    </user>
+</userConfig>

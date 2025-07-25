@@ -3,6 +3,7 @@ package com.axonivy.connector.salesforce.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -150,6 +151,8 @@ public class Opportunity implements Serializable {
 
 	@JsonProperty("MainCompetitors__c")
 	private String mainCompetitors__c;
+	@JsonIgnore
+	private String accName;
 
 	public String getId() {
 		return id;
@@ -517,6 +520,14 @@ public class Opportunity implements Serializable {
 
 	public void setMainCompetitors__c(String mainCompetitors__c) {
 		this.mainCompetitors__c = mainCompetitors__c;
+	}
+
+	public String getAccName() {
+		return accName;
+	}
+
+	public void setAccName(String accName) {
+		this.accName = accName;
 	}
 
 }
