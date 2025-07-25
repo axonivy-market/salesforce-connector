@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ListTasksData",
+  "namespace" : "salesforce.connector.demo.ListTasks",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "bean",
+    "type" : "com.axonivy.connector.salesforce.ListTasksBean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "id",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "readOnlyDetailDialog",
+    "type" : "com.axonivy.connector.salesforce.ReadOnlyModeListener",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

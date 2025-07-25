@@ -1,0 +1,190 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<p:dialog id="#{idName}" widgetVar="#{idName}Dialog" blockScroll="true"
+	fitViewport="false" responsive="true" width="75%" header="Lead"
+	appendTo="@(body)" modal="true" dynamic="true" resizable="false"
+	styleClass="position-absolute">
+
+	<h:form id="#{idName}Form">
+		<div class="ui-fluid">
+			<h:panelGroup id="createGroup">
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-12 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="First Name" for="@next"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:inputText readonly="false"
+									value="#{data.bean.selected.firstName}"></p:inputText>
+							</div>
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Lastname" for="@next"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:inputText id="lastnameObj" readonly="false"
+									value="#{data.bean.selected.lastName}"></p:inputText>
+							</div>
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Company" for="compObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:inputText id="compObj" required="true"
+									value="#{data.bean.selected.company}"></p:inputText>
+							</div>
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Title" for="titleObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:inputText id="titleObj" value="#{data.bean.selected.title}"></p:inputText>
+							</div>
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Lead Source" for="leadObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:inputText id="leadObj"
+									value="#{data.bean.selected.leadSource}"></p:inputText>
+							</div>
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Industry" for="@next"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:inputText value="#{data.bean.selected.industry}"></p:inputText>
+							</div>
+						</div>
+					</div>
+					<div class="ui-g-12 ui-md-12 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Annual Revenue" for="@next"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:inputNumber decimalPlaces="0" symbolPosition="s" symbol="€"
+									value="#{data.bean.selected.annualRevenue}"></p:inputNumber>
+							</div>
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Address" for="@next"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:inputText value="#{data.bean.selected.city}" readonly="false"></p:inputText>
+							</div>
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Last Activity Date" for="actDateObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:datePicker id="actDateObj" readonly="true"
+									readonlyInput="true" disabled="true"
+									value="#{data.bean.selected.lastActivityDate}"
+									pattern="dd.MM.yyyy " required="false"></p:datePicker>
+								<!-- 								<p:inputText id="" -->
+								<!-- 									value="#{data.bean.selectedTask.activityDate}" disabled="true"></p:inputText> -->
+							</div>
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Last Modified Date" for="closeDateObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:datePicker id="closeDateObj" readonly="true"
+									readonlyInput="true" disabled="true"
+									value="#{data.bean.selected.lastModifiedDate}"
+									pattern="dd.MM.yyyy HH:mm:ss" required="false"></p:datePicker>
+							</div>
+
+						</div>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g"></div>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g"></div>
+					</div>
+
+				</div>
+				<div class="ui-g"></div>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-4 ui-lg-4">
+								<p:outputLabel value="Opportunity" for="accNameObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-8 ui-lg-8">
+								<h:outputText id="accNameObj"
+									value="#{data.bean.selected.accName}" />
+							</div>
+						</div>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-4 ui-lg-4">
+								<p:outputLabel value="Is Converted" for="isConvObj"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-8 ui-lg-8">
+								<p:selectBooleanCheckbox id="isConvObj" disabled="true"
+									value="#{data.bean.selected.isConverted}"></p:selectBooleanCheckbox>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-2 ui-lg-2">
+								<p:outputLabel value="Status" for="@next"></p:outputLabel>
+							</div>
+							<div class="ui-g-12 ui-md-10 ui-lg-10">
+								<p:autoComplete completeMethod="#{data.bean.completeLeadStatus}"
+									dropdownMode="blank" dropdown="true" forceSelection="false"
+									value="#{data.bean.selected.status}" required="true">
+								</p:autoComplete>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-12 ui-lg-12">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-12 ui-lg-12">
+								<p:outputLabel value="Description" for="descriptionObj"></p:outputLabel>
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-12 ui-lg-12">
+								<p:inputTextarea id="descriptionObj" required="false"
+									value="#{data.bean.selected.description}"></p:inputTextarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h:panelGroup>
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-6" />
+						<div class="ui-g-12 ui-md-3 ui-lg-3">
+							<p:commandButton id="save"
+								actionListener="#{logic[saveButtonMethod]}"
+								rendered="#{not empty saveButtonMethod}"
+								update="#{p:resolveFirstComponentWithId('form', view).clientId} #{p:resolveFirstComponentWithId(idName.concat('Form'), view).clientId}"
+								oncomplete="if(args &amp;&amp; !args.validationFailed) PF('#{idName}Dialog').hide()"
+								value="Save" icon="pi pi-time">
+							</p:commandButton>
+
+						</div>
+						<div class="ui-g-12 ui-md-3 ui-lg-3">
+							<p:commandButton id="closeOpp"
+								oncomplete="PF('#{idName}Dialog').hide()"
+								update="#{p:resolveFirstComponentWithId(idName.concat('Form'), view).clientId}"
+								value="Close" icon="pi pi-time">
+							</p:commandButton>
+						</div>
+					</div>
+				</h:panelGroup>
+			</h:panelGroup>
+		</div>
+	</h:form>
+</p:dialog>
+</html>

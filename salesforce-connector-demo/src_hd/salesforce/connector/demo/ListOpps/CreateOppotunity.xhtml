@@ -7,11 +7,11 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<p:dialog id="opportunityCreate" widgetVar="opportunityCreateDialog"
+<p:dialog id="#{idName}" widgetVar="#{idName}Dialog"  blockScroll="true" fitViewport="false" responsive="true" width="75%"  
 	header="Opportunity" appendTo="@(body)" modal="true" dynamic="true"
 	resizable="false" styleClass="position-absolute">
 
-	<h:form id="opportunityCreatelForm">
+	<h:form id="#{idName}Form">
 		<div class="ui-fluid">
 			<h:panelGroup id="opportunityCreateGroup">
 				<div class="ui-g">
@@ -162,17 +162,17 @@
 					<div class="ui-g">
 						<div class="ui-g-12 ui-md-6 ui-lg-6" />
 						<div class="ui-g-12 ui-md-3 ui-lg-3">
-							<p:commandButton id="saveOpp" actionListener="#{logic.save}"
-								update="#{p:resolveFirstComponentWithId('form', view).clientId} #{p:resolveFirstComponentWithId('opportunityCreatelForm', view).clientId}"
-								oncomplete="if(args &amp;&amp; !args.validationFailed) PF('opportunityCreateDialog').hide()"
+							<p:commandButton id="saveOpp" actionListener="#{logic[saveButtonMethod]}" rendered="#{not empty saveButtonMethod}"
+								update="#{p:resolveFirstComponentWithId('form', view).clientId} #{p:resolveFirstComponentWithId(idName.concat('Form'), view).clientId}"
+								oncomplete="if(args &amp;&amp; !args.validationFailed) PF('#{idName}Dialog').hide()"
 								value="Save" icon="pi pi-time">
 							</p:commandButton>
 
 						</div>
 						<div class="ui-g-12 ui-md-3 ui-lg-3">
-							<p:commandButton id="closeOpp"
-								oncomplete="PF('opportunityCreateDialog').hide()"
-								update="#{p:resolveFirstComponentWithId('opportunityCreatelForm', view).clientId}"
+							<p:commandButton id="closeOpp" styleClass="doNotDisable"
+								oncomplete="PF('#{idName}Dialog').hide()"
+								update="#{p:resolveFirstComponentWithId(idName.concat('Form'), view).clientId}"
 								value="Close" icon="pi pi-time">
 							</p:commandButton>
 						</div>

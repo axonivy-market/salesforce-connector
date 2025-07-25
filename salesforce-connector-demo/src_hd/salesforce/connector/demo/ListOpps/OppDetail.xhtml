@@ -6,8 +6,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-<p:dialog id="opportunityDetail" widgetVar="opportunityDetailDialog"
-	header="Opportunity Detail" width="800" appendTo="@(body)" modal="true"
+<p:dialog id="opportunityDetail" widgetVar="opportunityDetailDialog" blockScroll="true" fitViewport="false" responsive="true" width="75%"  
+	header="Opportunity Detail"  appendTo="@(body)" modal="true"
 	dynamic="true" resizable="false" styleClass="position-absolute">
 	<h:form id="opportunityDetailForm">
 		<div class="ui-fluid">
@@ -194,9 +194,9 @@
 											<div class="slds-form-element_readonly">
 												<p:outputLabel value="Status: "/>	#{task.status}
 											</div>		
-											<div class="slds-form-element_readonly">
-												<p:outputLabel value="Name: "/>	#{task.name}
-											</div>
+<!-- 											<div class="slds-form-element_readonly"> -->
+<!-- 												<p:outputLabel value="Subject: "/>	#{task.subject} -->
+<!-- 											</div> -->
 											<div class="slds-form-element_readonly">
 												<p:outputLabel value="Related To: "/>	#{data.bean.selectedOpp.name}
 											</div>

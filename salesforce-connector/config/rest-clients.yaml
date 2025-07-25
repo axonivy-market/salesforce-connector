@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/rest-clients.json
 RestClients:
   SalesforceAPI:
     UUID: a8bd1ef0-7283-4211-9672-3231654ad15f
@@ -5,7 +6,7 @@ RestClients:
     Icon: res:/webContent/icons/Salesforce-logo.jpg
     Features:
     - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
-    - com.axonivy.connector.salesforce.auth.OAuth2Feature
+    - ch.ivyteam.ivy.rest.client.oauth2.OAuth2FeatureNew
     Properties:
       AUTH.baseUri: https://${ivy.var.salesforce-connector.auth.subdomain}.my.salesforce.com/services/oauth2
       AUTH.appId: ${ivy.var.salesforce-connector.auth.clientId}

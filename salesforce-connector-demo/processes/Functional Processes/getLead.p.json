@@ -1,0 +1,68 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19837BE91D9BA13D",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.LeadData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getLead(String)",
+      "config" : {
+        "signature" : "getLead",
+        "input" : {
+          "params" : [
+            { "name" : "id", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.id" : "param.id"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "lead", "type" : "com.axonivy.connector.salesforce.model.Lead", "desc" : "" }
+          ],
+          "map" : {
+            "result.lead" : "in.lead"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "SubProcessCall",
+      "name" : "get Lead service",
+      "config" : {
+        "processCall" : "GetLeadService:call(String)",
+        "call" : {
+          "map" : {
+            "param.id" : "in.id"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.lead" : "result.lead"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    } ]
+}

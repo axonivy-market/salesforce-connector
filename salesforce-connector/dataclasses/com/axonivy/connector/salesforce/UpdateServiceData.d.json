@@ -8,6 +8,6 @@
     "type" : "String"
   }, {
     "name" : "opportunity",
-    "type" : "com.axonivy.connector.salesforce.model.OpportunityUpdateDTO"
+    "type" : "com.axonivy.connector.salesforce.model.Opportunity"
   } ]
 }

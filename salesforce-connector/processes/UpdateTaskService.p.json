@@ -1,0 +1,105 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1983398BA6162799",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.salesforce.TaskData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(String,Task)",
+      "config" : {
+        "signature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "id", "type" : "String", "desc" : "" },
+            { "name" : "task", "type" : "com.axonivy.connector.salesforce.model.Task", "desc" : "" }
+          ],
+          "map" : {
+            "out.id" : "param.id",
+            "out.task" : "param.task"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "task", "type" : "com.axonivy.connector.salesforce.model.Task", "desc" : "" }
+          ],
+          "map" : {
+            "result.task" : "in.task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 472, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RestClientCall",
+      "name" : "Update Task",
+      "config" : {
+        "method" : "PATCH",
+        "target" : {
+          "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+          "path" : "/sobjects/Task/{id}",
+          "templateParams" : {
+            "ivy.var.salesforce-connector.auth.url" : "",
+            "id" : "in.id",
+            "subdomain" : ""
+          },
+          "headers" : {
+            "X-Requested-By" : "in.task"
+          }
+        },
+        "body" : {
+          "entity" : {
+            "type" : "com.axonivy.connector.salesforce.model.Task",
+            "code" : [
+              "import org.apache.commons.beanutils.BeanUtils;",
+              "BeanUtils.copyProperties(param, in.task);",
+              "",
+              "param.lastModifiedDate=null;",
+              "param.isDeleted=null;",
+              "param.accountId=null;//no permissions ?",
+              "param.isHighPriority=null;",
+              "param.isRecurrence=null;",
+              "param.taskSubtype=null;",
+              "param.isClosed=null;",
+              "param.systemModstamp=null;",
+              "param.isArchived=null;",
+              "param.createdById=null;",
+              "param.createdDate=null;",
+              "param.lastModifiedById=null;",
+              "param.completedDateTime=null;",
+              "param.id=null;//all these props are not setable"
+            ]
+          }
+        },
+        "response" : {
+          "entity" : {
+            "type" : "com.fasterxml.jackson.databind.JsonNode",
+            "code" : [
+              "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
+              "ivy.log.debug(\"update task response {0}\",response.toString());"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 },
+        "icon" : "res:/webContent/icons/Salesforce-logo.jpg"
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    } ]
+}

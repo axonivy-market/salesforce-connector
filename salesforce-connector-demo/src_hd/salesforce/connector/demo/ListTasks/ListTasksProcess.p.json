@@ -1,9 +1,9 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
-  "id" : "18BB743AA45B474E",
+  "id" : "198323A8CB09B563",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "salesforce.connector.demo.ListOpps.ListOppsData"
+    "data" : "salesforce.connector.demo.ListTasks.ListTasksData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -11,27 +11,19 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
-        "input" : {
-          "map" : { },
-          "code" : [
-            "import com.axonivy.connector.salesforce.ListOppsBean;",
-            "",
-            "out.bean = new ListOppsBean();"
-          ]
-        },
         "guid" : "18BB743AA48ECFFA"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f2", "to" : "f18" }
       ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 352, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -69,34 +61,24 @@
     }, {
       "id" : "f7",
       "type" : "SubProcessCall",
-      "name" : "AddOppService",
+      "name" : "Add Task Service",
       "config" : {
-        "processCall" : "AddOppService:call(com.axonivy.connector.salesforce.model.Opportunity)",
+        "processCall" : "AddTaskService:call(com.axonivy.connector.salesforce.model.Task)",
         "call" : {
           "map" : {
-            "param.opportunity" : "in.bean.selectedOpp"
+            "param.task" : "in.bean.selectedTask"
           }
         },
         "output" : {
           "map" : {
             "out" : "in",
-            "out.bean.selectedOpp.id" : "result.opp.id"
+            "out.bean.selectedOpp.id" : "result.idResponse.id"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 384, "y" : 280 }
       },
-      "boundaries" : [ {
-          "id" : "f24",
-          "type" : "ErrorBoundaryEvent",
-          "visual" : {
-            "at" : { "x" : 416, "y" : 320 }
-          },
-          "connect" : [
-            { "id" : "f25", "to" : "f9", "via" : [ { "x" : 672, "y" : 320 } ] }
-          ]
-        } ],
       "connect" : [
         { "id" : "f12", "to" : "f11" }
       ]
@@ -115,8 +97,6 @@
           "code" : [
             "import com.axonivy.connector.salesforce.Utils;",
             "",
-            "//in.bean.opportunities.add(0,in.bean.selectedOpp);",
-            "",
             "in.bean.reset();"
           ]
         }
@@ -130,10 +110,13 @@
     }, {
       "id" : "f13",
       "type" : "Script",
-      "name" : "set Account to Oppotunity",
+      "name" : "set Account to Task",
       "config" : {
         "output" : {
-          "code" : "in.bean.selectedOpp.accountId = in.bean.getAccountIdByName(in.bean.accountName);"
+          "code" : [
+            "in.bean.selectedTask.accountId = in.bean.getAccountIdByName(in.bean.accountName); ",
+            "in.bean.selectedTask.whatId  = in.bean.getOpportunityIdByName(in.bean.whatOpportunity); "
+          ]
         }
       },
       "visual" : {
@@ -154,7 +137,7 @@
         "at" : { "x" : 88, "y" : 416 }
       },
       "connect" : [
-        { "id" : "f21", "to" : "f20" }
+        { "id" : "f21", "to" : "f24" }
       ]
     }, {
       "id" : "f17",
@@ -165,46 +148,21 @@
     }, {
       "id" : "f16",
       "type" : "SubProcessCall",
-      "name" : "UpdateOppService",
+      "name" : "Update Task Service",
       "config" : {
-        "processCall" : "UpdateOppService:call(String,com.axonivy.connector.salesforce.model.Opportunity)",
+        "processCall" : "UpdateTaskService:call(String,com.axonivy.connector.salesforce.model.Task)",
         "call" : {
           "map" : {
-            "param.id" : "in.bean.selectedOpp.id",
-            "param.opportunity" : "in.bean.selectedOpp"
+            "param.id" : "in.bean.selectedTask.id",
+            "param.task" : "in.bean.selectedTask"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 416, "y" : 416 }
+        "at" : { "x" : 424, "y" : 416 }
       },
-      "boundaries" : [ {
-          "id" : "f26",
-          "type" : "ErrorBoundaryEvent",
-          "visual" : {
-            "at" : { "x" : 448, "y" : 456 }
-          },
-          "connect" : [
-            { "id" : "f27", "to" : "f17", "via" : [ { "x" : 712, "y" : 456 } ] }
-          ]
-        } ],
       "connect" : [
         { "id" : "f23", "to" : "f22" }
-      ]
-    }, {
-      "id" : "f20",
-      "type" : "Script",
-      "name" : "convet to Update obj DTO",
-      "config" : {
-        "output" : {
-          "code" : "in.bean.convertToUpdateDTO();"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 224, "y" : 416 }
-      },
-      "connect" : [
-        { "id" : "f18", "to" : "f16" }
       ]
     }, {
       "id" : "f22",
@@ -212,11 +170,7 @@
       "name" : "Update current List",
       "config" : {
         "output" : {
-          "code" : [
-            "//in.bean.updateCurrentListAfterUpdate();",
-            "",
-            "in.bean.reset();"
-          ]
+          "code" : "in.bean.reset();"
         }
       },
       "visual" : {
@@ -250,9 +204,9 @@
     }, {
       "id" : "f29",
       "type" : "SubProcessCall",
-      "name" : "DeleteOppService",
+      "name" : "Delete Task Service",
       "config" : {
-        "processCall" : "DeleteOppService:call(String)",
+        "processCall" : "DeleteTaskService:call(String)",
         "call" : {
           "map" : {
             "param.id" : "in.id"
@@ -262,16 +216,6 @@
       "visual" : {
         "at" : { "x" : 416, "y" : 544 }
       },
-      "boundaries" : [ {
-          "id" : "f37",
-          "type" : "ErrorBoundaryEvent",
-          "visual" : {
-            "at" : { "x" : 448, "y" : 584 }
-          },
-          "connect" : [
-            { "id" : "f38", "to" : "f31", "via" : [ { "x" : 720, "y" : 584 } ] }
-          ]
-        } ],
       "connect" : [
         { "id" : "f34", "to" : "f33" }
       ]
@@ -287,11 +231,7 @@
       "name" : "Update current list",
       "config" : {
         "output" : {
-          "code" : [
-            "//in.bean.updateCurrentListAfterDelete();",
-            "",
-            "in.bean.reset();"
-          ]
+          "code" : "in.bean.reset();"
         }
       },
       "visual" : {
@@ -303,7 +243,7 @@
     }, {
       "id" : "f35",
       "type" : "Script",
-      "name" : "before delete",
+      "name" : "load before delete",
       "config" : {
         "output" : {
           "code" : "in.bean.beforeDelete(in.id);"
@@ -314,6 +254,48 @@
       },
       "connect" : [
         { "id" : "f30", "to" : "f29" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "Script",
+      "name" : "init",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.salesforce.ListTasksBean;",
+            "import com.axonivy.connector.salesforce.ReadOnlyModeListener;",
+            "out.bean = new ListTasksBean(); ",
+            "",
+            "",
+            "in.readOnlyDetailDialog = new ReadOnlyModeListener();",
+            "in.readOnlyDetailDialog .containerId=\"taskDetailForm\";//task details link is readonly",
+            "in.readOnlyDetailDialog .enabled=true;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f24",
+      "type" : "Script",
+      "name" : "set Account to Task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.bean.selectedTask.accountId = in.bean.getAccountIdByName(in.bean.accountName); ",
+            "in.bean.selectedTask.whatId  = in.bean.getOpportunityIdByName(in.bean.whatOpportunity); "
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 416 }
+      },
+      "connect" : [
+        { "id" : "f25", "to" : "f16", "color" : "default" }
       ]
     } ]
 }

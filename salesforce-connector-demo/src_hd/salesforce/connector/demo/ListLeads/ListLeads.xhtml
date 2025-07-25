@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/frame-10-full-width.xhtml">
+		<ui:define name="title">List Leads</ui:define>
+		<ui:define name="content">
+			<ui:include src="/layouts/includes/portalConfig.xhtml"/>
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+				<div class="command-btns">
+					<p:commandButton id="add" actionListener="#{data.bean.addNewLead()}" oncomplete="PF('createDialog').show()"
+						value="Add New" icon="si si-add">						
+					</p:commandButton>
+				</div>
+				<div class="ui-fluid">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-12 ui-lg-12">
+							<p:dataTable id="dataTable" widgetVar="dataTable"
+								value="#{data.bean.leads}" var="opp" rowKey="#{opp.id}" rows="10"
+								paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								currentPageReportTemplate="({currentPage} of {totalPages})"
+								rowsPerPageTemplate="5,10,20" paginatorPosition="bottom"
+								emptyMessage="No records found"
+								filteredValue="#{data.bean.filteredLeads}"
+								globalFilterFunction="#{data.bean.globalFilterFunction}">
+								<f:facet name="header">
+					 			    <div class="flex " style="justify-self:center">
+					 					List Leads
+					 				</div>
+					 				<div class="flex" style="justify-self:end">
+				         	           <p:inputText  id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:200px;"
+					                                 placeholder="Search all fields..." />
+                                    </div>
+<!-- 					                </div> -->
+					            </f:facet>
+								<p:column
+									headerText="Name"
+									width="120px;" sortBy="#{opp.name}"
+									filterBy="#{opp.name}" filterMatchMode="contains">
+									<p:commandLink value="#{opp.name}"
+										actionListener="#{data.bean.openLeadDetail(opp.id)}"
+										oncomplete="PF('detailDialog').show()"
+										update="detail" />
+								</p:column>
+								<p:column
+									headerText="Company"
+									field="company" width="200px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								
+								<p:column
+									headerText="Title"
+									field="title" width="100px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								<p:column
+									headerText="Lead Source"
+									field="leadSource" width="100px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								<p:column
+									headerText="Industry"
+									field="industry" width="100px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								<p:column
+									headerText="Annual revenue"
+									field="annualRevenue" width="100px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								<p:column
+									headerText="Address"
+									field="city" width="100px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								<p:column
+									headerText="Product Interest"
+									field="productInterest__c" width="100px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								<p:column
+									headerText="Description" 
+									width="100px;" sortBy="#{opp.description}"
+									filterBy="#{opp.description}" filterMatchMode="contains">
+									<h:outputText value="#{opp.description}" title="#{opp.description}"
+										/>
+								</p:column>
+								<p:column
+									headerText="Opportunity"
+									width="100px;" sortBy="#{opp.accName}"
+									filterBy="#{opp.accName}" filterMatchMode="contains">
+									<h:outputText value="#{opp.accName}" />
+								</p:column>
+								<p:column
+									headerText="Last Activity Date"
+									width="100px;" sortBy="#{opp.lastActivityDate}"
+									filterBy="#{opp.lastActivityDate}" filterMatchMode="contains">
+									<h:outputText value="#{opp.lastActivityDate}">
+										<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+								<p:column headerText="Status"
+									width="100px;" sortBy="#{opp.status}" filterBy="#{opp.status}"
+									filterMatchMode="contains">
+									<h:outputText value="#{opp.status}" />
+								</p:column>
+								<p:column
+									headerText="Phone"
+									field="phone" width="100px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								<p:column
+									headerText="Mobile"
+									field="mobilePhone" width="80px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								<p:column
+									headerText="Email"
+									field="email" width="100px;" sortable="true" filterable="true" filterMatchMode="contains">
+								</p:column>
+								
+								<p:column id="actionColumn" toggleable="false"
+									headerText="#{ivy.cms.co('/Dialogs/listOpps/action')}"
+									width="60px;" exportable="false" selectRow="false">
+									<p:commandLink id="edit"
+										actionListener="#{data.bean.updateLead(opp.id)}"
+										oncomplete="PF('updateDialog').show()"
+										update="#{p:resolveFirstComponentWithId('updateForm', view).clientId}"
+										title="Edit">
+										<i class="fa fa-pencil mx-1" />
+									</p:commandLink>
+									<p:commandLink id="delete"
+										actionListener="#{logic.delete(opp.id)}" update="form"
+										styleClass="no-underline" title="Delete">
+										<i class="fa fa-trash mx-1" />
+										<p:confirm header="Confirmation"
+											message="Do you want to delete this record?"
+											icon="pi pi-info-circle" />
+									</p:commandLink>
+								</p:column>
+							</p:dataTable>
+						</div>
+					</div>
+				</div>
+				<br />
+				<div class="command-btns">
+					<p:commandButton id="proceed" actionListener="#{logic.close}"
+						value="Close" update="form" icon="si si-close" />
+				</div>
+			</h:form>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				responsive="true" width="350">
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no ui-button-flat" />
+				<p:commandButton value="Yes" type="button"
+					styleClass="ui-confirmdialog-yes" />
+			</p:confirmDialog>
+			
+			<f:phaseListener binding="#{data.readOnlyDetailDialog}" />
+			<ui:include src="CreateDialog.xhtml"><ui:param name="idName" value="create"/><ui:param name="saveButtonMethod" value="save"/></ui:include>
+			<ui:include src="CreateDialog.xhtml"><ui:param name="idName" value="update"/><ui:param name="saveButtonMethod" value="update"/></ui:include>
+			<ui:include src="CreateDialog.xhtml"><ui:param name="idName" value="detail"/><ui:param name="saveButtonMethod" value=""/></ui:include><!-- no save -->
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>
