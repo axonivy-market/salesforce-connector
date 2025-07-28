@@ -416,5 +416,29 @@ public class Task implements Serializable {
 		this.recurrenceRegeneratedType = recurrenceRegeneratedType;
 	}
 
+	public String date2Str(Date d) {
+		return d==null?"":Opportunity.dateFormat.get().format(d);
+	}
+	
+	@Override
+	public String toString() {
+		return "Task [id=" + id + ", whoId=" + whoId + ", whatId=" + whatId + ", subject=" + subject + ", activityDate="
+				+ date2Str(activityDate) + ", status=" + status + ", priority=" + priority + ", isHighPriority=" + isHighPriority
+				+ ", ownerId=" + ownerId + ", description=" + description + ", isDeleted=" + isDeleted + ", accountId="
+				+ accountId + ", isClosed=" + isClosed + ", createdDate=" + date2Str(createdDate) + ", createdById=" + createdById
+				+ ", lastModifiedDate=" + date2Str(lastModifiedDate) + ", lastModifiedById=" + lastModifiedById
+				+ ", systemModstamp=" + systemModstamp + ", isArchived=" + isArchived + ", callDurationInSeconds="
+				+ callDurationInSeconds + ", callType=" + callType + ", callDisposition=" + callDisposition
+				+ ", callObject=" + callObject + ", reminderDateTime=" +date2Str( reminderDateTime )+ ", isReminderSet="
+				+ isReminderSet + ", recurrenceActivityId=" + recurrenceActivityId + ", isRecurrence=" + isRecurrence
+				+ ", recurrenceStartDateOnly=" + recurrenceStartDateOnly + ", recurrenceEndDateOnly="
+				+ recurrenceEndDateOnly + ", recurrenceTimeZoneSidKey=" + recurrenceTimeZoneSidKey + ", recurrenceType="
+				+ recurrenceType + ", recurrenceInterval=" + recurrenceInterval + ", recurrenceDayOfWeekMask="
+				+ recurrenceDayOfWeekMask + ", recurrenceDayOfMonth=" + recurrenceDayOfMonth + ", recurrenceInstance="
+				+ recurrenceInstance + ", recurrenceMonthOfYear=" + recurrenceMonthOfYear
+				+ ", recurrenceRegeneratedType=" + recurrenceRegeneratedType + ", taskSubtype=" + taskSubtype
+				+ ", completedDateTime=" + date2Str(completedDateTime) + ", accName=" + accName + "]";
+	}
+
 
 }
