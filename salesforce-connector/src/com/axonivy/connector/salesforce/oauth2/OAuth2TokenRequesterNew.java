@@ -1,4 +1,4 @@
-package ch.ivyteam.ivy.rest.client.oauth2;
+package com.axonivy.connector.salesforce.oauth2;
 
 
 	import java.util.Optional;

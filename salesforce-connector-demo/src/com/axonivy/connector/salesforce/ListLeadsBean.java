@@ -56,9 +56,9 @@ public class ListLeadsBean {
 	public void openLeadDetail(String id) {
 		selected = SubProcessCall.withPath("Functional Processes/getLead")
 				.withStartSignature("getLead(String)").withParam("id", id).call().get("lead", Lead.class);
-		accountName = Utils.getAccName(selected.getConvertedAccountId());
+		accountName =getAccountNameById(selected.getConvertedAccountId());
 		
-		whatOpportunity= Utils.getOppName(selected.getConvertedOpportunityId());
+		whatOpportunity= getOpportunityNameById(selected.getConvertedOpportunityId());
 		selected.setAccName(whatOpportunity);
 	}
 
@@ -186,6 +186,17 @@ public class ListLeadsBean {
 		if (opp != null)
 			oppName = opp.getName();
 		return oppName;
+		}else { return "";}				
+				
+	}
+
+	public String getAccountNameById(String id) {
+		if(id!=null&&!id.isBlank()) {
+		String accName = null;
+		Account acc = accs.stream().filter(t -> t.getId().equals(id)).findFirst().orElse(null);
+		if (acc != null)
+			accName = acc.getName();
+		return accName;
 		}else { return "";}				
 				
 	}
