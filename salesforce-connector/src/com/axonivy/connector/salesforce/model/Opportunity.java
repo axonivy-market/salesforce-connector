@@ -1,7 +1,11 @@
 package com.axonivy.connector.salesforce.model;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.commons.beanutils.converters.DateConverter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -154,6 +158,13 @@ public class Opportunity implements Serializable {
 	@JsonIgnore
 	private String accName;
 
+	final public static ThreadLocal<SimpleDateFormat> dateFormat = new ThreadLocal<SimpleDateFormat>() {
+	    @Override
+	    protected SimpleDateFormat initialValue() {
+	        return new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+	    }
+	};
+	
 	public String getId() {
 		return id;
 	}
@@ -529,5 +540,32 @@ public class Opportunity implements Serializable {
 	public void setAccName(String accName) {
 		this.accName = accName;
 	}
+	
+	public String date2Str(Date d) {
+		
+		return d==null?"":dateFormat.get().format(d);
+	}
 
+	@Override
+	public String toString() {
+		return "Opportunity [id=" + id + ", isDeleted=" + isDeleted + ", accountId=" + accountId + ", isPrivate="
+				+ isPrivate + ", name=" + name + ", description=" + description + ", stageName=" + stageName
+				+ ", amount=" + amount + ", probability=" + probability + ", expectedRevenue=" + expectedRevenue
+				+ ", totalOpportunityQuantity=" + totalOpportunityQuantity + ", closeDate=" + date2Str(closeDate) + ", type="
+				+ type + ", nextStep=" + nextStep + ", leadSource=" + leadSource + ", isClosed=" + isClosed + ", isWon="
+				+ isWon + ", forecastCategory=" + forecastCategory + ", forecastCategoryName=" + forecastCategoryName
+				+ ", campaignId=" + campaignId + ", hasOpportunityLineItem=" + hasOpportunityLineItem
+				+ ", pricebook2Id=" + pricebook2Id + ", ownerId=" + ownerId + ", createdDate=" + date2Str(createdDate)
+				+ ", createdById=" + createdById + ", lastModifiedDate=" + date2Str(lastModifiedDate) + ", lastModifiedById="
+				+ lastModifiedById + ", systemModstamp=" + date2Str(systemModstamp) + ", lastActivityDate=" + date2Str(lastActivityDate)
+				+ ", pushCount=" + pushCount + ", lastStageChangeDate=" + date2Str(lastStageChangeDate) + ", fiscalQuarter="
+				+ fiscalQuarter + ", fiscalYear=" + fiscalYear + ", fiscal=" + fiscal + ", contactId=" + contactId
+				+ ", lastViewedDate=" + date2Str(lastViewedDate) + ", lastReferencedDate=" + date2Str(lastReferencedDate)
+				+ ", hasOpenActivity=" + hasOpenActivity + ", hasOverdueTask=" + hasOverdueTask
+				+ ", lastAmountChangedHistoryId=" + lastAmountChangedHistoryId + ", lastCloseDateChangedHistoryId="
+				+ lastCloseDateChangedHistoryId + ", deliveryInstallationStatus__c=" + deliveryInstallationStatus__c
+				+ ", trackingNumber__c=" + trackingNumber__c + ", orderNumber__c=" + orderNumber__c
+				+ ", currentGenerators__c=" + currentGenerators__c + ", mainCompetitors__c=" + mainCompetitors__c
+				+ ", accName=" + accName + "]";
+	}
 }

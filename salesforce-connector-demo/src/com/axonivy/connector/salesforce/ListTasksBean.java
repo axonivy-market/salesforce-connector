@@ -174,16 +174,7 @@ public class ListTasksBean {
 				|| task.getSubject()!=null&&task.getSubject().toLowerCase().contains(filterText)
 				|| task.getTaskSubtype()!=null&&task.getTaskSubtype().toString().toLowerCase().contains(filterText);
 		if(!containsText) {
-			Map<String, String> allProps ;
-			try {
-				allProps = BeanUtils.describe(task);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				e.printStackTrace();
-				allProps = new HashMap<>();
-			}
-			containsText = allProps.values()
-				    .stream()
-				    .anyMatch(e ->e!=null&& e.toLowerCase().contains(filterText));
+			containsText = task.toString().toLowerCase().contains(filterText);
 		}
 		return containsText;
 	}
