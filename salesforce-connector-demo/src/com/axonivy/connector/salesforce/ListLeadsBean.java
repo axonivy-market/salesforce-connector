@@ -163,16 +163,7 @@ public class ListLeadsBean {
 		|| lead.getName()!=null&&lead.getName().toString().toLowerCase().contains(filterText);
 
 		if(!containsText) {
-			Map<String, String> allProps ;
-			try {
-				allProps = BeanUtils.describe(lead);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				e.printStackTrace();
-				allProps = new HashMap<>();
-			}
-			containsText = allProps.values()
-				    .stream()
-				    .anyMatch(e -> e!=null&&e.toLowerCase().contains(filterText));
+			containsText=lead.toString().toLowerCase().contains(filterText);
 		}
 		
 		return containsText;

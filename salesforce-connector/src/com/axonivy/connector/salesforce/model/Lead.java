@@ -92,7 +92,7 @@ public class Lead implements Serializable {
 	    @JsonProperty("IsConverted") 
 	    private Boolean isConverted;
 	    @JsonProperty("ConvertedDate") 
-	    private String convertedDate;
+	    private Date convertedDate;
 	    @JsonProperty("ConvertedAccountId") 
 	    private String convertedAccountId;
 	    @JsonProperty("ConvertedContactId") 
@@ -112,11 +112,11 @@ public class Lead implements Serializable {
 	    @JsonProperty("SystemModstamp") 
 	    private Date systemModstamp;
 	    @JsonProperty("LastActivityDate") 
-	    private String lastActivityDate;
+	    private Date lastActivityDate;
 	    @JsonProperty("LastViewedDate") 
-	    private String lastViewedDate;
+	    private Date lastViewedDate;
 	    @JsonProperty("LastReferencedDate") 
-	    private String lastReferencedDate;
+	    private Date lastReferencedDate;
 	    @JsonProperty("Jigsaw") 
 	    private String jigsaw;
 	    @JsonProperty("JigsawContactId") 
@@ -130,7 +130,7 @@ public class Lead implements Serializable {
 	    @JsonProperty("EmailBouncedReason") 
 	    private String emailBouncedReason;
 	    @JsonProperty("EmailBouncedDate") 
-	    private String emailBouncedDate;
+	    private Date emailBouncedDate;
 	    @JsonProperty("IndividualId") 
 	    private String individualId;
 	    @JsonProperty("SICCode__c") 
@@ -346,10 +346,10 @@ public class Lead implements Serializable {
 		public void setIsConverted(Boolean isConverted) {
 			this.isConverted = isConverted;
 		}
-		public String getConvertedDate() {
+		public Date getConvertedDate() {
 			return convertedDate;
 		}
-		public void setConvertedDate(String convertedDate) {
+		public void setConvertedDate(Date convertedDate) {
 			this.convertedDate = convertedDate;
 		}
 		public String getConvertedAccountId() {
@@ -406,22 +406,22 @@ public class Lead implements Serializable {
 		public void setSystemModstamp(Date systemModstamp) {
 			this.systemModstamp = systemModstamp;
 		}
-		public String getLastActivityDate() {
+		public Date  getLastActivityDate() {
 			return lastActivityDate;
 		}
-		public void setLastActivityDate(String lastActivityDate) {
+		public void setLastActivityDate(Date lastActivityDate) {
 			this.lastActivityDate = lastActivityDate;
 		}
-		public String getLastViewedDate() {
+		public Date getLastViewedDate() {
 			return lastViewedDate;
 		}
-		public void setLastViewedDate(String lastViewedDate) {
+		public void setLastViewedDate(Date lastViewedDate) {
 			this.lastViewedDate = lastViewedDate;
 		}
-		public String getLastReferencedDate() {
+		public Date getLastReferencedDate() {
 			return lastReferencedDate;
 		}
-		public void setLastReferencedDate(String lastReferencedDate) {
+		public void setLastReferencedDate(Date lastReferencedDate) {
 			this.lastReferencedDate = lastReferencedDate;
 		}
 		public String getJigsaw() {
@@ -460,10 +460,10 @@ public class Lead implements Serializable {
 		public void setEmailBouncedReason(String emailBouncedReason) {
 			this.emailBouncedReason = emailBouncedReason;
 		}
-		public String getEmailBouncedDate() {
+		public Date getEmailBouncedDate() {
 			return emailBouncedDate;
 		}
-		public void setEmailBouncedDate(String emailBouncedDate) {
+		public void setEmailBouncedDate(Date emailBouncedDate) {
 			this.emailBouncedDate = emailBouncedDate;
 		}
 		public String getIndividualId() {
@@ -507,6 +507,35 @@ public class Lead implements Serializable {
 		}
 		public void setAccName(String accName) {
 			this.accName = accName;
+		}
+		
+		public String date2Str(Date d) {
+			return d==null?"":Opportunity.dateFormat.get().format(d);
+		}
+		@Override
+		public String toString() {
+			return "Lead [isDeleted=" + isDeleted + ", masterRecordId=" + masterRecordId + ", lastName=" + lastName
+					+ ", firstName=" + firstName + ", salutation=" + salutation + ", name=" + name + ", title=" + title
+					+ ", company=" + company + ", street=" + street + ", city=" + city + ", state=" + state
+					+ ", postalCode=" + postalCode + ", country=" + country + ", latitude=" + latitude + ", longitude="
+					+ longitude + ", geocodeAccuracy=" + geocodeAccuracy + ", address=" + address + ", phone=" + phone
+					+ ", mobilePhone=" + mobilePhone + ", fax=" + fax + ", email=" + email + ", website=" + website
+					+ ", photoUrl=" + photoUrl + ", description=" + description + ", leadSource=" + leadSource
+					+ ", status=" + status + ", industry=" + industry + ", rating=" + rating + ", annualRevenue="
+					+ annualRevenue + ", numberOfEmployees=" + numberOfEmployees + ", ownerId=" + ownerId
+					+ ", isConverted=" + isConverted + ", convertedDate=" + date2Str(convertedDate) + ", convertedAccountId="
+					+ convertedAccountId + ", convertedContactId=" + convertedContactId + ", convertedOpportunityId="
+					+ convertedOpportunityId + ", isUnreadByOwner=" + isUnreadByOwner + ", createdDate=" + date2Str(createdDate)
+					+ ", createdById=" + createdById + ", lastModifiedDate=" + date2Str(lastModifiedDate) + ", lastModifiedById="
+					+ lastModifiedById + ", systemModstamp=" + date2Str(systemModstamp) + ", lastActivityDate=" + date2Str(lastActivityDate)
+					+ ", lastViewedDate=" + date2Str(lastViewedDate) + ", lastReferencedDate=" + date2Str(lastReferencedDate) + ", jigsaw="
+					+ jigsaw + ", jigsawContactId=" + jigsawContactId + ", cleanStatus=" + cleanStatus
+					+ ", companyDunsNumber=" + companyDunsNumber + ", dandbCompanyId=" + dandbCompanyId
+					+ ", emailBouncedReason=" + emailBouncedReason + ", emailBouncedDate=" + date2Str(emailBouncedDate)
+					+ ", individualId=" + individualId + ", sICCode__c=" + sICCode__c + ", productInterest__c="
+					+ productInterest__c + ", primary__c=" + primary__c + ", currentGenerators__c="
+					+ currentGenerators__c + ", numberofLocations__c=" + numberofLocations__c + ", accName=" + accName
+					+ "]";
 		}
 
 	    

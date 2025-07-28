@@ -3,6 +3,7 @@ package com.axonivy.connector.salesforce;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -12,6 +13,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.BeanUtilsBean2;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.ConvertUtilsBean2;
+import org.apache.commons.beanutils.PropertyUtilsBean;
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.util.LangUtils;
 
@@ -153,16 +160,7 @@ public class ListOppsBean {
 				|| opp.getStageName()!=null&&opp.getStageName().toLowerCase().contains(filterText)
 				|| opp.getCloseDate()!=null&&opp.getCloseDate().toString().toLowerCase().contains(filterText);
 		if(!containsText) {
-			Map<String, String> allProps ;
-			try {
-				allProps = BeanUtils.describe(opp);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				e.printStackTrace();
-				allProps = new HashMap<>();
-			}
-			containsText = allProps.values()
-				    .stream()
-				    .anyMatch(e ->e!=null&& e.toLowerCase().contains(filterText));
+			containsText = opp.toString().toLowerCase().contains(filterText);
 		}
 		return containsText;
 	}
