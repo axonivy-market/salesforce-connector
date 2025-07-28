@@ -15,9 +15,11 @@ import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
 import ch.ivyteam.ivy.environment.Ivy;
-
+/**
+ * REST Endpoint which accepts webservice Calls from SALESFORCE workflow actions. This allow reacting to any change in Tasks of sales force.
+ */
 @Path("webhooks")
-public class TaskStatusEndpoint {
+public class StatusEndpoint {
 	@POST
 	@Path("/notifyTaskId")
 	@Consumes(value= {MediaType.APPLICATION_XML})
@@ -57,7 +59,7 @@ public class TaskStatusEndpoint {
         envelope.addNamespaceDeclaration("soapenv","http://schemas.xmlsoap.org/soap/envelope/");
         //remove the default SOAP-ENV
         envelope.removeNamespaceDeclaration("SOAP-ENV");
-        //Set the prefix to soap instead of SOAP-ENV
+        //Set the prefix to soapenv instead of SOAP-ENV
         envelope.setPrefix("soapenv");
         soapMessage.getSOAPHeader().detachNode(); //no header 
 

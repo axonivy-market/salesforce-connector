@@ -33,7 +33,6 @@ import ch.ivyteam.ivy.process.call.SubProcessCall;
 
 public class ListOppsBean {
 	private List<Opportunity> opportunities;
-	//private List<OpportunityDTO> opps;
 	private List<Opportunity> filterOpps;
 	private Opportunity selectedOpp;
 	private String accountName;
@@ -41,16 +40,15 @@ public class ListOppsBean {
 	private String ownerId;
 	private List<Account> accs;
 	private List<String> stages;
-	//private OpportunityUpdateDTO updateDTO;
 	private ActivityDTO activityDTO;
 
 	public ListOppsBean() {
 		ownerId = ConvertUtils.extractOwnerId();
 		getAllOpps();
 
+
 	}
 
-	
 
 	public void openOpportunityDetail(String id) {
 		selectedOpp = SubProcessCall.withPath("Functional Processes/getOpportunity")
@@ -66,7 +64,11 @@ public class ListOppsBean {
 	}
 
 	public void getAllOpps() {
+		getAllAccounts();
 		opportunities = Utils.getAllOpps();
+		for(Opportunity opp : opportunities) {
+			opp.setAccName(getAccountNameById(opp.getAccountId()));//fill transient field
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -84,39 +86,15 @@ public class ListOppsBean {
 	}
 
 	public void updateOppotunity(String id) {
-		//updateDTO = new OpportunityUpdateDTO();
 		openOpportunityDetail(id);
 		getAllAccounts();
 		getListStages();
 	}
 
-	public void convertToUpdateDTO() throws IllegalAccessException, InvocationTargetException {
-		selectedOpp.setAccountId(getAccountIdByName(accountName));
-		//updateDTO = ConvertUtils.convertToOpportunityObjUpdate(selectedOpp);
-	}
-
-//	public void updateCurrentListAfterUpdate() {
-//		OptionalInt result = IntStream.range(0, opportunities.size())
-//				.filter(x -> selectedOpp.getId().equals(opportunities.get(x).getId())).findFirst();
-//		if (result.isPresent()) {
-//			int index = result.getAsInt();
-//			opportunities.set(index, selectedOpp);
-//		}
-//	}
-
 	public void beforeDelete(String id) {
 		selectedOpp = SubProcessCall.withPath("Functional Processes/getOpportunity")
 				.withStartSignature("getOpportunity(String)").withParam("id", id).call().get("opp", Opportunity.class);
 	}
-
-//	public void updateCurrentListAfterDelete() {
-//		OptionalInt result = IntStream.range(0, opportunities.size())
-//				.filter(x -> selectedOpp.getId().equals(opportunities.get(x).getId())).findFirst();
-//		if (result.isPresent()) {
-//			int index = result.getAsInt();
-//			opportunities.remove(index);
-//		}
-//	}
 
 	private void getListStages() {
 		stages = Arrays.stream(Stage.values()).map(e -> e.getLabel()).collect(Collectors.toList());
@@ -165,6 +143,17 @@ public class ListOppsBean {
 		return containsText;
 	}
 
+	public String getAccountNameById(String id) {
+		if(id!=null&&!id.isBlank()) {
+		String accName = null;
+		Account acc = accs.stream().filter(t -> t.getId().equals(id)).findFirst().orElse(null);
+		if (acc != null)
+			accName = acc.getName();
+		return accName;
+		}else { return "";}				
+				
+	}
+
 	public String getAccountName(String id) {
 		return Utils.getAccName(id);
 	}
@@ -176,14 +165,6 @@ public class ListOppsBean {
 	public void setOpportunities(List<Opportunity> opportunities) {
 		this.opportunities = opportunities;
 	}
-
-//	public List<OpportunityDTO> getOpps() {
-//		return opps;
-//	}
-
-//	public void setOpps(List<OpportunityDTO> opps) {
-//		this.opps = opps;
-//	}
 
 	public Opportunity getSelectedOpp() {
 		return selectedOpp;
@@ -228,14 +209,6 @@ public class ListOppsBean {
 	public List<String> getStages() {
 		return stages;
 	}
-
-//	public OpportunityUpdateDTO getUpdateDTO() {
-//		return updateDTO;
-//	}
-//
-//	public void setUpdateDTO(OpportunityUpdateDTO updateDTO) {
-//		this.updateDTO = updateDTO;
-//	}
 
 	public List<Opportunity> getFilterOpps() {
 		return filterOpps;

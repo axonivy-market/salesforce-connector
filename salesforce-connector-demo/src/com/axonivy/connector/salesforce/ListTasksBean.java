@@ -1,17 +1,11 @@
 package com.axonivy.connector.salesforce;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.OptionalInt;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.util.LangUtils;
 
@@ -41,14 +35,12 @@ public class ListTasksBean {
 	public ListTasksBean() {
 		ownerId = ConvertUtils.extractOwnerId();
 
-		getAllOpps();
 		getAllTasks();
 		getAllAccounts();
 		getListStages();
 
 	}
 	public void updateTask(String id) {
-		//updateDTO = new OpportunityUpdateDTO();
 		openTaskDetail(id);
 	}
 
@@ -57,19 +49,14 @@ public class ListTasksBean {
 				.withStartSignature("getTask(String)").withParam("id", id).call().get("task", Task.class);
 		accountName = Utils.getAccName(selectedTask.getAccountId());
 		whatOpportunity= Utils.getOppName(selectedTask.getWhatId());
-//		getActivities();
 	}
 
-//	private void getActivities() {
-//		activityDTO = new ActivityDTO();
-//		activityDTO.setTasks(Utils.getAllTasks(selectedOpp.getId()));
-//		activityDTO.setEvents(Utils.getAllEvents(selectedOpp.getId()));
-//	}
 
 	public void getAllOpps() {
 		opportunities = Utils.getAllOpps();
 	}
 	public void getAllTasks() {
+		getAllOpps();
 		tasks = Utils.getAllTasks();
 		for(Task t : tasks) {
 			t.setAccName(getOpportunityNameById(t.getWhatId()));
@@ -155,7 +142,6 @@ public class ListTasksBean {
 		setSelectedTask(new Task());
 		accountName = null;
 		whatOpportunity=null;
-		getAllOpps();
 		getAllTasks();
 		getAllAccounts();
 
@@ -242,14 +228,6 @@ public class ListTasksBean {
 	public List<String> getStages() {
 		return stages;
 	}
-
-//	public OpportunityUpdateDTO getUpdateDTO() {
-//		return updateDTO;
-//	}
-//
-//	public void setUpdateDTO(OpportunityUpdateDTO updateDTO) {
-//		this.updateDTO = updateDTO;
-//	}
 
 	public List<Task> getFilterTasks() {
 		return filterTasks;

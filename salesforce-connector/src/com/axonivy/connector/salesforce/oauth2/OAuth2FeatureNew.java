@@ -1,4 +1,4 @@
-package ch.ivyteam.ivy.rest.client.oauth2;
+package com.axonivy.connector.salesforce.oauth2;
 
 
 
@@ -15,10 +15,12 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 import com.axonivy.connector.salesforce.auth.AuthConstant;
+import com.axonivy.connector.salesforce.oauth2.OAuth2TokenRequesterNew.AuthContextNew;
 
 import ch.ivyteam.ivy.bpm.error.BpmPublicErrorBuilder;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
-import ch.ivyteam.ivy.rest.client.oauth2.OAuth2TokenRequesterNew.AuthContextNew;
+import ch.ivyteam.ivy.rest.client.oauth2.OAuth2RedirectErrorBuilder;
 import ch.ivyteam.ivy.rest.client.oauth2.uri.OAuth2CallbackUriBuilder;
 import ch.ivyteam.ivy.rest.client.oauth2.uri.OAuth2UriProperty;
 
@@ -45,27 +47,7 @@ public class OAuth2FeatureNew implements Feature {
 		var graphUri = new OAuth2UriProperty(config, Property.AUTH_BASE_URI, Default.AUTH_URI);
 		
 		OAuth2TokenRequesterNew requestor = ctxt -> requestToken(ctxt, graphUri);
-		OAuth2BearerFilterNew oauth2=null;
-		final ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader();
-   	    oauth2 = new OAuth2BearerFilterNew(requestor, graphUri) ;
-
-		try  
-	    {  
-	       Thread.currentThread().setContextClassLoader(OAuth2TokenRequester.class.getClassLoader());
-	       try {
-	       
-			//Class<?> clazz = cl1.loadClass("ch.ivyteam.ivy.rest.client.oauth2.OAuth2TokenRequester$AuthContext");
-			int i = 0;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    }  
-	    finally  
-	    {  
-	       Thread.currentThread().setContextClassLoader(originalClassLoader);  
-	    }  
-	    
+		OAuth2BearerFilterNew oauth2 = new OAuth2BearerFilterNew(requestor, graphUri) ;
 		
 		oauth2.tokenSuffix(() -> GrantType.of(config).type);
 		context.register(oauth2, Priorities.AUTHORIZATION);

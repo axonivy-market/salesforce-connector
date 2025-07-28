@@ -9,71 +9,67 @@
 	<ui:composition template="/layouts/frame-10-full-width.xhtml">
 		<ui:define name="title">list Tasks</ui:define>
 		<ui:define name="content">
-			<ui:include src="/layouts/includes/portalConfig.xhtml"/>
-		
-		
+			<ui:include src="/layouts/includes/portalConfig.xhtml" />
+
+
 			<h:form id="form">
-				<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+				<p:growl id="msgs" showDetail="true"
+					skipDetailIfEqualsSummary="true" />
 				<div class="command-btns">
-					<p:commandButton id="add" actionListener="#{data.bean.addNewTask()}" oncomplete="PF('taskCreateDialog').show()"
-						value="Add New" icon="si si-add">						
+					<p:commandButton id="add"
+						actionListener="#{data.bean.addNewTask()}"
+						oncomplete="PF('taskCreateDialog').show()" value="Add New"
+						icon="si si-add">
 					</p:commandButton>
 				</div>
 				<div class="ui-fluid">
 					<div class="ui-g">
 						<div class="ui-g-12 ui-md-12 ui-lg-12">
-						
+
 							<p:dataTable id="dataTable" widgetVar="dataTable"
-								value="#{data.bean.tasks}" var="opp" rowKey="#{opp.id}" rows="10"
-								paginator="true"
+								value="#{data.bean.tasks}" var="opp" rowKey="#{opp.id}"
+								rows="10" paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 								currentPageReportTemplate="({currentPage} of {totalPages})"
 								rowsPerPageTemplate="5,10,20" paginatorPosition="bottom"
 								emptyMessage="No records found"
 								filteredValue="#{data.bean.filterTasks}"
 								globalFilterFunction="#{data.bean.globalFilterFunction}">
-					 			<f:facet name="header">
-					 			    <div class="flex " style="justify-self:center">
-					 				List Tasks
-					 				</div>
-					 				<div class="flex" style="justify-self:end">
-				         	           <p:inputText  id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:200px;"
-					                                 placeholder="Search all fields..." />
-					                                 </div>
-<!-- 					                </div> -->
-					            </f:facet>
-								<p:column
-									headerText="Subject"
-									width="120px;" sortBy="#{opp.subject}"
-									filterBy="#{opp.subject}" filterMatchMode="contains">
+								<f:facet name="header">
+									<div class="flex " style="justify-self: center">List
+										Tasks</div>
+									<div class="flex" style="justify-self: end">
+										<p:inputText id="globalFilter"
+											onkeyup="PF('dataTable').filter()" style="width:200px;"
+											placeholder="Search all fields..." />
+									</div>
+								</f:facet>
+								<p:column headerText="Subject" width="120px;"
+									sortBy="#{opp.subject}" filterBy="#{opp.subject}"
+									filterMatchMode="contains">
 									<p:commandLink value="#{opp.subject}"
 										actionListener="#{data.bean.openTaskDetail(opp.id)}"
-										oncomplete="PF('taskDetailDialog').show()"
-										update="taskDetail" />
+										oncomplete="PF('taskDetailDialog').show()" update="taskDetail" />
 								</p:column>
-								<p:column
-									headerText="Description"
-									width="200px;" sortBy="#{opp.description}"
-									filterBy="#{opp.description}" filterMatchMode="contains">
-									<h:outputText value="#{opp.description}"
-										/>
+								<p:column headerText="Description" width="200px;"
+									sortBy="#{opp.description}" filterBy="#{opp.description}"
+									filterMatchMode="contains">
+									<h:outputText value="#{opp.description}" />
 								</p:column>
-								<p:column
-									headerText="Opportunity"
-									width="100px;" sortBy="#{opp.accName}"
-									filterBy="#{opp.accName}" filterMatchMode="contains">
+								<p:column headerText="Opportunity" width="100px;"
+									sortBy="#{opp.accName}" filterBy="#{opp.accName}"
+									filterMatchMode="contains">
 									<h:outputText value="#{opp.accName}" />
 								</p:column>
-								<p:column
-									headerText="Completed Date"
-									width="100px;" sortBy="#{opp.completedDateTime}"
+								<p:column headerText="Completed Date" width="100px;"
+									sortBy="#{opp.completedDateTime}"
 									filterBy="#{opp.completedDateTime}" filterMatchMode="contains">
 									<h:outputText value="#{opp.completedDateTime}">
 										<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
 									</h:outputText>
 								</p:column>
-								<p:column headerText="Status"
-									width="100px;" sortBy="#{opp.status}" filterBy="#{opp.status}"
+								<p:column headerText="Status" width="100px;"
+									sortBy="#{opp.status}" filterBy="#{opp.status}"
 									filterMatchMode="contains">
 									<h:outputText value="#{opp.status}" />
 								</p:column>
@@ -115,9 +111,19 @@
 					styleClass="ui-confirmdialog-yes" />
 			</p:confirmDialog>
 			<f:phaseListener binding="#{data.readOnlyDetailDialog}" />
-			<ui:include src="CreateDialog.xhtml"><ui:param name="idName" value="taskCreate"/><ui:param name="saveButtonMethod" value="save"/></ui:include>
-			<ui:include src="CreateDialog.xhtml"><ui:param name="idName" value="taskUpdate"/><ui:param name="saveButtonMethod" value="update"/></ui:include>
-			<ui:include src="CreateDialog.xhtml"><ui:param name="idName" value="taskDetail"/><ui:param name="saveButtonMethod" value=""/></ui:include><!-- no save -->
+			<ui:include src="CreateDialog.xhtml">
+				<ui:param name="idName" value="taskCreate" />
+				<ui:param name="saveButtonMethod" value="save" />
+			</ui:include>
+			<ui:include src="CreateDialog.xhtml">
+				<ui:param name="idName" value="taskUpdate" />
+				<ui:param name="saveButtonMethod" value="update" />
+			</ui:include>
+			<ui:include src="CreateDialog.xhtml">
+				<ui:param name="idName" value="taskDetail" />
+				<ui:param name="saveButtonMethod" value="" />
+			</ui:include>
+			<!-- no save -->
 
 		</ui:define>
 	</ui:composition>

@@ -195,11 +195,6 @@
       "id" : "f20",
       "type" : "Script",
       "name" : "convet to Update obj DTO",
-      "config" : {
-        "output" : {
-          "code" : "in.bean.convertToUpdateDTO();"
-        }
-      },
       "visual" : {
         "at" : { "x" : 224, "y" : 416 }
       },
