@@ -96,7 +96,8 @@ public class ConvertUtils {
 	public static String extractOwnerId() {
 		String ownerId = Ivy.session().getSessionUser().getProperty("SalesForceOwnerId");
 		if(ownerId==null||ownerId.isBlank()) {
-			ownerId = "005d2000000lFTRAA2";
+			Ivy.log().warn("SalesForce write API requires an ownerId, please setup property SalesForceOwnerId on users with access. Current User {0} has no such property set. ",Ivy.session().getSessionUserName());
+			ownerId = "";
 		}
 		return ownerId;
 	}
