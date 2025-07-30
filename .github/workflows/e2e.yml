@@ -1,0 +1,17 @@
+name: E2E-Build
+
+on:
+  push:
+  schedule:
+    - cron:  '21 21 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  build:
+    uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
+    secrets:
+      mvnArgs: -Dsalesforce.url=${{secrets.URL}} -Dsalesforce.subdomain=${{secrets.SUB_DOMAIN}} -Dsalesforce.clientid=${{secrets.CLIENT_ID}} -Dsalesforce.clientsecret=${{secrets.CLIENT_SECRET}}	-DtestEnvironment=E2E
