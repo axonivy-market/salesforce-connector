@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.axonivy.connector.salesforce.utils.SalesforceTestUtils;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
@@ -20,22 +19,22 @@ import ch.ivyteam.ivy.environment.AppFixture;
 
 @IvyProcessTest(enableWebServer = true)
 public class DeleteOppServiceAPITest {
-	private static final BpmProcess DELETEOPPSERVICE_PROCESS = BpmProcess.path("DeleteOppService");
+  private static final BpmProcess DELETEOPPSERVICE_PROCESS = BpmProcess.path("DeleteOppService");
 
-	@BeforeEach
-	void beforeEach(AppFixture fixture) {
-		SalesforceTestUtils.setUpConfigForMockServer(fixture);
-	}
+  @BeforeEach
+  void beforeEach(AppFixture fixture) {
+    fixture.config("RestClients.SalesforceAPI.Features", "ch.ivyteam.ivy.rest.client.mapper.JsonFeature");
+    fixture.var("salesforceConnector.auth.url", "{ivy.app.baseurl}/api/salesforceMock");
+  }
 
-	@Test
-	void deleteOpportunity(BpmClient bpmClient)
-			throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
+  @Test
+  void deleteOpportunity(BpmClient bpmClient)
+      throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
+    BpmElement startable = DELETEOPPSERVICE_PROCESS.elementName("call(String)");
 
-		BpmElement startable = DELETEOPPSERVICE_PROCESS.elementName("call(String)");
+    ExecutionResult result = bpmClient.start().subProcess(startable).execute("123456789");
 
-		ExecutionResult result = bpmClient.start().subProcess(startable).execute("123456789");
-
-		String id = (String) result.data().last().get("id");
-		assertThat(id).isEqualTo("123456789");
-	}
+    String id = (String) result.data().last().get("id");
+    assertThat(id).isEqualTo("123456789");
+  }
 }
