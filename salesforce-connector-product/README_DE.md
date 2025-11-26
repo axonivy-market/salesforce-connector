@@ -69,7 +69,7 @@ Dieser Konnektor:
 ![delete-opportunity-popup](images/sf-delete.png)
 
 
-## Einrichtung
+## Setup
 
 ### Konfiguration auf Salesforce-Seite
 Damit eine Client-Anwendung auf REST-API-Ressourcen zugreifen kann, muss sie als
