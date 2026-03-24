@@ -75,7 +75,7 @@
 									headerText="#{ivy.cms.co('/Dialogs/listOpps/action')}"
 									width="60px;" exportable="false" selectRow="false">
 									<p:commandLink id="edit"
-										actionListener="#{data.bean.updateOppotunity(opp.id)}"
+										actionListener="#{data.bean.updateOpportunity(opp.id)}"
 										oncomplete="PF('opportunityUpdateDialog').show()"
 										update="#{p:resolveFirstComponentWithId('opportunityUpdatelForm', view).clientId}"
 										title="Edit">

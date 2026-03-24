@@ -75,7 +75,7 @@ public class ListOppsBean {
 		getListStages();
 	}
 
-	public void updateOppotunity(String id) {
+	public void updateOpportunity(String id) {
 		updateDTO = new OpportunityUpdateDTO();
 		openOpportunityDetail(id);
 		getAllAccounts();

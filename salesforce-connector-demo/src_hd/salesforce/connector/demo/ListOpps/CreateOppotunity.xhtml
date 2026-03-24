@@ -11,7 +11,7 @@
 	header="Opportunity" appendTo="@(body)" modal="true" dynamic="true"
 	resizable="false" styleClass="position-absolute">
 
-	<h:form id="opportunityCreatelForm">
+	<h:form id="opportunityCreateForm">
 		<div class="ui-fluid">
 			<h:panelGroup id="opportunityCreateGroup">
 				<div class="ui-g">
@@ -163,7 +163,7 @@
 						<div class="ui-g-12 ui-md-6 ui-lg-6" />
 						<div class="ui-g-12 ui-md-3 ui-lg-3">
 							<p:commandButton id="saveOpp" actionListener="#{logic.save}"
-								update="#{p:resolveFirstComponentWithId('form', view).clientId} #{p:resolveFirstComponentWithId('opportunityCreatelForm', view).clientId}"
+								update="#{p:resolveFirstComponentWithId('form', view).clientId} #{p:resolveFirstComponentWithId('opportunityCreateForm', view).clientId}"
 								oncomplete="if(args &amp;&amp; !args.validationFailed) PF('opportunityCreateDialog').hide()"
 								value="Save" icon="pi pi-time">
 							</p:commandButton>
@@ -172,7 +172,7 @@
 						<div class="ui-g-12 ui-md-3 ui-lg-3">
 							<p:commandButton id="closeOpp"
 								oncomplete="PF('opportunityCreateDialog').hide()"
-								update="#{p:resolveFirstComponentWithId('opportunityCreatelForm', view).clientId}"
+								update="#{p:resolveFirstComponentWithId('opportunityCreateForm', view).clientId}"
 								value="Close" icon="pi pi-time">
 							</p:commandButton>
 						</div>
