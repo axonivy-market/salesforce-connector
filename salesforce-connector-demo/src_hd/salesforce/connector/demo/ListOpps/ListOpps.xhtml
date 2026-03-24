@@ -77,7 +77,7 @@
 									<p:commandLink id="edit"
 										actionListener="#{data.bean.updateOpportunity(opp.id)}"
 										oncomplete="PF('opportunityUpdateDialog').show()"
-										update="#{p:resolveFirstComponentWithId('opportunityUpdatelForm', view).clientId}"
+										update="#{p:resolveFirstComponentWithId('opportunityUpdateForm', view).clientId}"
 										title="Edit">
 										<i class="fa fa-pencil mx-1" />
 									</p:commandLink>
@@ -110,8 +110,8 @@
 			</p:confirmDialog>
 
 			<ui:include src="OppDetail.xhtml"></ui:include>
-			<ui:include src="UpdateOppotunity.xhtml"></ui:include>
-			<ui:include src="CreateOppotunity.xhtml"></ui:include>
+			<ui:include src="UpdateOpportunity.xhtml"></ui:include>
+			<ui:include src="CreateOpportunity.xhtml"></ui:include>
 
 		</ui:define>
 	</ui:composition>
