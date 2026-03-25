@@ -11,7 +11,7 @@
 	header="Opportunity" appendTo="@(body)" modal="true" dynamic="true"
 	resizable="false" styleClass="position-absolute">
 
-	<h:form id="opportunityUpdatelForm">
+	<h:form id="opportunityUpdateForm">
 		<div class="ui-fluid">
 			<h:panelGroup id="opportunityUpdateGroup">
 				<div class="ui-g">
@@ -181,7 +181,7 @@
 						<div class="ui-g-12 ui-md-3 ui-lg-3">
 							<p:commandButton id="closeOpp"
 								oncomplete="PF('opportunityUpdateDialog').hide()"
-								update="#{p:resolveFirstComponentWithId('opportunityUpdatelForm', view).clientId}"
+								update="#{p:resolveFirstComponentWithId('opportunityUpdateForm', view).clientId}"
 								value="Close" icon="pi pi-time">
 							</p:commandButton>
 						</div>

@@ -67,7 +67,7 @@ public class ListOppsBean {
 				.withStartSignature("getAllAccounts()").call().get("accs", Account.class);
 	}
 
-	public void addNewOppotunity() {
+	public void addNewOpportunity() {
 		accountName = null;
 		selectedOpp = new Opportunity();
 		selectedOpp.setOwnerId(ownerId);
@@ -75,7 +75,7 @@ public class ListOppsBean {
 		getListStages();
 	}
 
-	public void updateOppotunity(String id) {
+	public void updateOpportunity(String id) {
 		updateDTO = new OpportunityUpdateDTO();
 		openOpportunityDetail(id);
 		getAllAccounts();

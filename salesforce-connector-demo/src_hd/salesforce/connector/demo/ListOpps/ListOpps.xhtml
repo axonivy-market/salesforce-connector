@@ -21,7 +21,7 @@
 				<br />
 				<br />
 				<div class="command-btns">
-					<p:commandButton id="add" actionListener="#{data.bean.addNewOppotunity()}" oncomplete="PF('opportunityCreateDialog').show()"
+					<p:commandButton id="add" actionListener="#{data.bean.addNewOpportunity()}" oncomplete="PF('opportunityCreateDialog').show()"
 						value="Add New" icon="si si-add">						
 					</p:commandButton>
 				</div>
@@ -75,9 +75,9 @@
 									headerText="#{ivy.cms.co('/Dialogs/listOpps/action')}"
 									width="60px;" exportable="false" selectRow="false">
 									<p:commandLink id="edit"
-										actionListener="#{data.bean.updateOppotunity(opp.id)}"
+										actionListener="#{data.bean.updateOpportunity(opp.id)}"
 										oncomplete="PF('opportunityUpdateDialog').show()"
-										update="#{p:resolveFirstComponentWithId('opportunityUpdatelForm', view).clientId}"
+										update="#{p:resolveFirstComponentWithId('opportunityUpdateForm', view).clientId}"
 										title="Edit">
 										<i class="fa fa-pencil mx-1" />
 									</p:commandLink>
@@ -110,8 +110,8 @@
 			</p:confirmDialog>
 
 			<ui:include src="OppDetail.xhtml"></ui:include>
-			<ui:include src="UpdateOppotunity.xhtml"></ui:include>
-			<ui:include src="CreateOppotunity.xhtml"></ui:include>
+			<ui:include src="UpdateOpportunity.xhtml"></ui:include>
+			<ui:include src="CreateOpportunity.xhtml"></ui:include>
 
 		</ui:define>
 	</ui:composition>
