@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
   "id" : "18BA2F3BE385F8DB",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -46,7 +46,7 @@
       "name" : "Get Opportunity",
       "config" : {
         "target" : {
-          "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+          "clientId" : "SalesforceAPI",
           "path" : "/sobjects/Opportunity/{id}",
           "templateParams" : {
             "subdomain" : "",

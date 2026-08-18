@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
   "id" : "18BA88DC14AB7EE5",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -47,7 +47,7 @@
       "config" : {
         "method" : "POST",
         "target" : {
-          "clientId" : "a8bd1ef0-7283-4211-9672-3231654ad15f",
+          "clientId" : "SalesforceAPI",
           "path" : "/sobjects/Opportunity",
           "headers" : {
             "X-Requested-By" : "in.opportunity"
