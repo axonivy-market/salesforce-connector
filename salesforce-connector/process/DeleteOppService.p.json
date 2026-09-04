@@ -1,9 +1,9 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
-  "id" : "18BA2F3BE385F8DB",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-2.json",
+  "id" : "18BA91A960F33F4A",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.connector.salesforce.GetServiceData"
+    "data" : "com.axonivy.connector.salesforce.DeleteServiceData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -17,14 +17,6 @@
           ],
           "map" : {
             "out.id" : "param.id"
-          }
-        },
-        "result" : {
-          "params" : [
-            { "name" : "opportunity", "type" : "com.axonivy.connector.salesforce.model.Opportunity", "desc" : "" }
-          ],
-          "map" : {
-            "result.opportunity" : "in.opportunity"
           }
         }
       },
@@ -43,24 +35,23 @@
     }, {
       "id" : "f3",
       "type" : "RestClientCall",
-      "name" : "Get Opportunity",
+      "name" : "Delete opportunity",
       "config" : {
+        "method" : "DELETE",
         "target" : {
           "clientId" : "SalesforceAPI",
           "path" : "/sobjects/Opportunity/{id}",
           "templateParams" : {
             "subdomain" : "",
             "id" : "in.id"
+          },
+          "headers" : {
+            "X-Requested-By" : "in.id"
           }
         },
         "response" : {
           "entity" : {
-            "type" : "com.fasterxml.jackson.databind.JsonNode",
-            "code" : [
-              "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
-              "",
-              "in.opportunity = ConvertUtils.convertToOpportunity(result);"
-            ]
+            "type" : "tools.jackson.databind.JsonNode"
           }
         }
       },
