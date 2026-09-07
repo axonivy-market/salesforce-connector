@@ -1,22 +1,30 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
-  "id" : "18BF4F8754BA3BE2",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-2.json",
+  "id" : "18C19E6F2ADC725A",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.connector.salesforce.Data"
+    "data" : "com.axonivy.connector.salesforce.FindAllTaskByOpportunityIdData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "getAllAccounts()",
+      "name" : "findTask(String)",
       "config" : {
-        "signature" : "getAllAccounts",
-        "result" : {
+        "signature" : "findTask",
+        "input" : {
           "params" : [
-            { "name" : "accs", "type" : "java.util.List<com.axonivy.connector.salesforce.model.Account>", "desc" : "" }
+            { "name" : "oppId", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "result.accs" : "in.accs"
+            "out.oppId" : "param.oppId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "tasks", "type" : "java.util.List<com.axonivy.connector.salesforce.model.Task>", "desc" : "" }
+          ],
+          "map" : {
+            "result.tasks" : "in.tasks"
           }
         }
       },
@@ -30,7 +38,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 384, "y" : 64 }
+        "at" : { "x" : 408, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -40,17 +48,18 @@
         "processCall" : "QueryService:call(String)",
         "call" : {
           "map" : { },
-          "code" : "param.query = ivy.html.escape(\"Select FIELDS(ALL) from Account LIMIT 200\");"
+          "code" : "param.query = \"Select FIELDS(ALL) from Task where WhatId='\"+ in.oppId +\"' LIMIT 200\";"
         },
         "output" : {
           "code" : [
             "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
-            "out.accs = ConvertUtils.convertToListAccounts(result.jsonNode);"
+            "",
+            "in.tasks = ConvertUtils.convertToListTask(result.jsonNode);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 64 }
+        "at" : { "x" : 264, "y" : 64 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }

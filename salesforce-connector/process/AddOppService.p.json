@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-2.json",
   "id" : "18BA88DC14AB7EE5",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -63,7 +63,7 @@
         },
         "response" : {
           "entity" : {
-            "type" : "com.fasterxml.jackson.databind.JsonNode",
+            "type" : "tools.jackson.databind.JsonNode",
             "code" : [
               "import com.axonivy.connector.salesforce.utils.ConvertUtils;",
               "",

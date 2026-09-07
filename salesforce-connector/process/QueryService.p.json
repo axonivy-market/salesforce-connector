@@ -1,9 +1,9 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
-  "id" : "18BA91A960F33F4A",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-2.json",
+  "id" : "18C0022FCA6F8CC0",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.connector.salesforce.DeleteServiceData"
+    "data" : "com.axonivy.connector.salesforce.QueryServiceData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -13,10 +13,18 @@
         "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "id", "type" : "String", "desc" : "" }
+            { "name" : "query", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.id" : "param.id"
+            "out.query" : "param.query"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "jsonNode", "type" : "com.fasterxml.jackson.databind.JsonNode", "desc" : "" }
+          ],
+          "map" : {
+            "result.jsonNode" : "in.jsonNode"
           }
         }
       },
@@ -30,33 +38,35 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 416, "y" : 64 }
       }
     }, {
       "id" : "f3",
       "type" : "RestClientCall",
-      "name" : "Delete opportunity",
+      "name" : "Query API",
       "config" : {
-        "method" : "DELETE",
         "target" : {
           "clientId" : "SalesforceAPI",
-          "path" : "/sobjects/Opportunity/{id}",
+          "path" : "/query",
           "templateParams" : {
             "subdomain" : "",
-            "id" : "in.id"
+            "ivy.var.salesforceConnector.auth.url" : ""
           },
-          "headers" : {
-            "X-Requested-By" : "in.id"
+          "queryParams" : {
+            "q" : "in.query"
           }
         },
         "response" : {
           "entity" : {
-            "type" : "com.fasterxml.jackson.databind.JsonNode"
+            "type" : "tools.jackson.databind.JsonNode",
+            "map" : {
+              "out.jsonNode" : "result"
+            }
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 264, "y" : 64 },
         "icon" : "res:/webContent/icons/Salesforce-logo.jpg"
       },
       "connect" : [

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils2.BeanUtils;
 
 import com.axonivy.connector.salesforce.model.Account;
 import com.axonivy.connector.salesforce.model.Event;
