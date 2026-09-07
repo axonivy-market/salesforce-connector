@@ -21,6 +21,10 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-beanutils2</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.spi</groupId>
+      <artifactId>ivy-rest-jersey-spi</artifactId>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>
