@@ -22,8 +22,8 @@
       <artifactId>commons-beanutils2</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.axonivy.ivy.spi</groupId>
-      <artifactId>ivy-rest-jersey-spi</artifactId>
+      <groupId>com.axonivy.ivy.api.extension</groupId>
+      <artifactId>ivy-rest-jersey-extension-api</artifactId>
     </dependency>
   </dependencies>
   <repositories>
