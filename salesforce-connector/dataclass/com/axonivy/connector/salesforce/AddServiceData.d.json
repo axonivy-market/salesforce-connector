@@ -10,5 +10,9 @@
     "name" : "oppResponse",
     "type" : "com.axonivy.connector.salesforce.response.CreateOppResponse",
     "modifiers" : [ ]
+  }, {
+    "name" : "error",
+    "type" : "ch.ivyteam.ivy.bpm.error.BpmError",
+    "modifiers" : [ ]
   } ]
 }

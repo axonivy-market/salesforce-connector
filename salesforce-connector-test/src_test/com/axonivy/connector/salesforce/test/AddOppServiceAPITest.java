@@ -12,8 +12,6 @@ import com.axonivy.connector.salesforce.model.Opportunity;
 import com.axonivy.connector.salesforce.model.OpportunityUpdateDTO;
 import com.axonivy.connector.salesforce.response.CreateOppResponse;
 import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
@@ -29,7 +27,7 @@ public class AddOppServiceAPITest extends BaseTest {
 
   @TestTemplate
   void addNewOpp(ExtensionContext context, BpmClient bpmClient)
-      throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
+      throws NoSuchFieldException, IOException {
     Opportunity opportunity = new Opportunity();
     opportunity.setName("Test 1");
     opportunity.setStageName("Stage Name test 1");

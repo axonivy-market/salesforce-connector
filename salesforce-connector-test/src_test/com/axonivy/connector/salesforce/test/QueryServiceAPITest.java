@@ -10,9 +10,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import com.axonivy.connector.salesforce.model.Opportunity;
 import com.axonivy.connector.salesforce.utils.ConvertUtils;
 import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
@@ -26,7 +24,7 @@ public class QueryServiceAPITest extends BaseTest {
 
   @TestTemplate
   void getAllOpps(ExtensionContext context, BpmClient bpmClient)
-      throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
+      throws NoSuchFieldException, IOException {
     BpmElement startable = QUERYSERVICE_PROCESS.elementName("call(String)");
     ExecutionResult result =
         bpmClient.start().subProcess(startable).execute("Select FIELDS(ALL) from Opportunity LIMIT 200");

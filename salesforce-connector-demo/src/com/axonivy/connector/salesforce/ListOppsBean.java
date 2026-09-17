@@ -9,18 +9,17 @@ import java.util.OptionalInt;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.util.LangUtils;
 
+import com.axonivy.connector.salesforce.dto.ActivityDTO;
+import com.axonivy.connector.salesforce.dto.OpportunityDTO;
+import com.axonivy.connector.salesforce.enums.Stage;
 import com.axonivy.connector.salesforce.model.Account;
 import com.axonivy.connector.salesforce.model.Opportunity;
 import com.axonivy.connector.salesforce.model.OpportunityUpdateDTO;
 import com.axonivy.connector.salesforce.utils.ConvertUtils;
 
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import com.axonivy.connector.salesforce.dto.ActivityDTO;
-import com.axonivy.connector.salesforce.dto.OpportunityDTO;
-import com.axonivy.connector.salesforce.enums.Stage;
 
 public class ListOppsBean {
 	private List<Opportunity> opportunities;
@@ -28,15 +27,12 @@ public class ListOppsBean {
 	private List<OpportunityDTO> filterOpps;
 	private Opportunity selectedOpp;
 	private String accountName;
-	private BarChartModel barModel;
-	private String ownerId;
 	private List<Account> accs;
 	private List<String> stages;
 	private OpportunityUpdateDTO updateDTO;
 	private ActivityDTO activityDTO;
 
 	public ListOppsBean() {
-		ownerId = "0055h000009a4XMAAY";
 		opps = new ArrayList<>();
 		getAllOpps();
 
@@ -67,10 +63,10 @@ public class ListOppsBean {
 				.withStartSignature("getAllAccounts()").call().get("accs", Account.class);
 	}
 
+	// OwnerId is left unset -> Salesforce assigns the authenticated user as owner
 	public void addNewOpportunity() {
 		accountName = null;
 		selectedOpp = new Opportunity();
-		selectedOpp.setOwnerId(ownerId);
 		getAllAccounts();
 		getListStages();
 	}
@@ -186,22 +182,6 @@ public class ListOppsBean {
 
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
-	}
-
-	public BarChartModel getBarModel() {
-		return barModel;
-	}
-
-	public void setBarModel(BarChartModel barModel) {
-		this.barModel = barModel;
-	}
-
-	public String getOwnerId() {
-		return ownerId;
-	}
-
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
 	}
 
 	public List<Account> getAccs() {

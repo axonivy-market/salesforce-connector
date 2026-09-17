@@ -9,8 +9,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.connector.salesforce.model.OpportunityUpdateDTO;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
 
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
@@ -29,7 +27,7 @@ public class UpdateOppServiceAPITest {
   }
 
   @Test
-  void updateOpp(BpmClient bpmClient) throws NoSuchFieldException, StreamReadException, DatabindException, IOException {
+  void updateOpp(BpmClient bpmClient) throws NoSuchFieldException, IOException {
     OpportunityUpdateDTO opportunity = new OpportunityUpdateDTO();
     opportunity.setName("Test 1");
     opportunity.setStageName("Stage Name test 1");

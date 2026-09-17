@@ -3,6 +3,7 @@ package com.axonivy.connector.salesforce.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,7 +38,9 @@ public class OpportunityUpdateDTO implements Serializable {
 	@JsonProperty("TotalOpportunityQuantity")
 	private Long totalOpportunityQuantity;
 
+	// Pinned: Jackson 3 defaults java.util.Date to an ISO datetime, Salesforce Date fields need yyyy-MM-dd
 	@JsonProperty("CloseDate")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
 	private Date closeDate;
 
 	@JsonProperty("Type")

@@ -1,6 +1,5 @@
 package com.axonivy.connector.salesforce.utils;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -12,52 +11,46 @@ import com.axonivy.connector.salesforce.model.Opportunity;
 import com.axonivy.connector.salesforce.model.OpportunityUpdateDTO;
 import com.axonivy.connector.salesforce.model.Task;
 import com.axonivy.connector.salesforce.response.CreateOppResponse;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 public class ConvertUtils {
-	private static final ObjectMapper mapper = new ObjectMapper();
+	private static final ObjectMapper mapper = new JsonMapper();
 	private static final String RECORDS = "records";
 
-	public static Opportunity convertToOpportunity(JsonNode jsonNode)
-			throws StreamReadException, DatabindException, IOException {
-		return mapper.readValue(mapper.treeAsTokens(jsonNode), Opportunity.class);
+	public static Opportunity convertToOpportunity(JsonNode jsonNode) {
+		return mapper.treeToValue(jsonNode, Opportunity.class);
 	}
 
-	public static List<Opportunity> convertToListOpportunity(JsonNode jsonNode)
-			throws StreamReadException, DatabindException, IOException {
+	public static List<Opportunity> convertToListOpportunity(JsonNode jsonNode) {
 		JsonNode node = jsonNode.findValue(RECORDS);
 
-		return mapper.readValue(mapper.treeAsTokens(node), new TypeReference<List<Opportunity>>() {});
+		return mapper.treeToValue(node, new TypeReference<List<Opportunity>>() {});
 	}
 
-	public static Account convertToAccount(JsonNode jsonNode)
-			throws StreamReadException, DatabindException, IOException {
-		return mapper.readValue(mapper.treeAsTokens(jsonNode), Account.class);
+	public static Account convertToAccount(JsonNode jsonNode) {
+		return mapper.treeToValue(jsonNode, Account.class);
 	}
 
-	public static List<Account> convertToListAccounts(JsonNode jsonNode)
-			throws StreamReadException, DatabindException, IOException {
+	public static List<Account> convertToListAccounts(JsonNode jsonNode) {
 		JsonNode node = jsonNode.findValue(RECORDS);
 
-		return mapper.readValue(mapper.treeAsTokens(node), new TypeReference<List<Account>>() {});
+		return mapper.treeToValue(node, new TypeReference<List<Account>>() {});
 	}
 
-	public static List<Task> convertToListTask(JsonNode jsonNode)
-			throws StreamReadException, DatabindException, IOException {
+	public static List<Task> convertToListTask(JsonNode jsonNode) {
 		JsonNode node = jsonNode.findValue(RECORDS);
 
-		return mapper.readValue(mapper.treeAsTokens(node), new TypeReference<List<Task>>() {});
+		return mapper.treeToValue(node, new TypeReference<List<Task>>() {});
 	}
 
-	public static List<Event> convertToListEvent(JsonNode jsonNode)
-			throws StreamReadException, DatabindException, IOException {
+	public static List<Event> convertToListEvent(JsonNode jsonNode) {
 		JsonNode node = jsonNode.findValue(RECORDS);
 
-		return mapper.readValue(mapper.treeAsTokens(node), new TypeReference<List<Event>>() {});
+		return mapper.treeToValue(node, new TypeReference<List<Event>>() {});
 	}
 
 	public static OpportunityUpdateDTO convertToOpportunityObjUpdate(Opportunity opportunity)
@@ -67,8 +60,7 @@ public class ConvertUtils {
 		return dto;
 	}
 
-	public static CreateOppResponse convertToOpportunityResponse(JsonNode jsonNode)
-			throws StreamReadException, DatabindException, IOException {
-		return mapper.readValue(mapper.treeAsTokens(jsonNode), CreateOppResponse.class);
+	public static CreateOppResponse convertToOpportunityResponse(JsonNode jsonNode) {
+		return mapper.treeToValue(jsonNode, CreateOppResponse.class);
 	}
 }

@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "jsonNode", "type" : "com.fasterxml.jackson.databind.JsonNode", "desc" : "" }
+            { "name" : "jsonNode", "type" : "tools.jackson.databind.JsonNode", "desc" : "" }
           ],
           "map" : {
             "result.jsonNode" : "in.jsonNode"
