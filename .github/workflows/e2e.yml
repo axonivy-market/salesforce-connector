@@ -11,6 +11,6 @@ permissions:
 
 jobs:
   build:
-    uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
+    uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v14
     secrets:
       mvnArgs: -Dsalesforce.url=${{secrets.URL}} -Dsalesforce.subdomain=${{secrets.SUB_DOMAIN}} -Dsalesforce.clientid=${{secrets.CLIENT_ID}} -Dsalesforce.clientsecret=${{secrets.CLIENT_SECRET}}	-DtestEnvironment=E2E
